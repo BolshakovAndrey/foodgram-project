@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}Заголовок страницы{% endblock %} | Foddgram</title>
+    <!-- load static -->
+    {% load static %}
+    <script src="{% static "admin/css" %}"></script>
+    <link rel="stylesheet" href="{% static "admin/js" %}">
+
+</head>
+<body>
+{% csrf_token %}
+
+{% include "includes/nav.html" %}
+{% include "includes/header.html" %}
+<main>
+    <div class="container">
+        {% block content %}
+            <!-- page content -->
+        {% endblock content %}
+    </div>
+</main>
+
+</body>
+{% include "includes/footer.html" %}
+</html>

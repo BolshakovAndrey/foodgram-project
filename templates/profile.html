@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load bootstrap_pagination %}
+{% block title %}
+    Профиль: {{ author.get_full_name }}
+{% endblock %}
+{% block content %}
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-3 mb-3 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="h2">
+                            <!-- Author's name -->
+                            {{ author.get_full_name }}
+                        </div>
+                        <div class="h3 text-muted">
+                            <!-- Author's username  -->
+                            {{ author.get_username }}
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">
+                                Подписчиков: {{ author.count_of_following }} <br />
+                                Подписан: {{ author.count_of_follower }}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">
+                                <!-- Number of records -->
+                                <p>
+                                    Количество записей: {{ author.count_of_posts }}
+                                </p>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            {% if following %}
+                                <a class="btn btn-lg btn-light"
+                                   href="{% url "profile_unfollow" author.username %}" role="button">
+                                    Отписаться
+                                </a>
+                            {% else %}
+                                <a class="btn btn-primary btn-block"
+                                   href="{% url "profile_follow" author.username %}" role="button">
+                                    Подписаться
+                                </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                {% for post in page_obj %}
+                    <!-- Start of a block with a separate post -->
+                        {% include "includes/post_item.html" with post=post %}
+                    <!-- End of a block with a separate post -->
+                {% endfor %}
+                <!-- The rest of the posts -->
+                <!-- Here is paginated navigation of the Paginator -->
+                <div class="col-md-12" >
+                    {% bootstrap_paginate page_obj range=10 %}
+                </div>
+{#                {% if page.has_other_pages %}#}
+{#                    {% include "includes/paginator.html" with items=page paginator=paginator %}#}
+{#                {% endif %}#}
+            </div>
+        </div>
+    </main>
+{% endblock %}

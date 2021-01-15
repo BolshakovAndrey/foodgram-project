@@ -1,0 +1,32 @@
+<!-- Form for adding comments -->
+{% load user_filters %}
+
+{% if user.is_authenticated %}
+    <div class="card my-4">
+        <form action="{% url "add_comment" post.author.username post.id %}" method="post">
+            {% csrf_token %}
+            <h5 class="card-header">Добавить комментарий:</h5>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        {{ form.text|addclass:"form-control" }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </form>
+    </div>
+{% endif %}
+
+<!-- Comments -->
+{% for item in post.comments.all %}
+    <div class="media mb-4">
+        <div class="media-body">
+            <h5 class="mt-0">
+                <a href="{% url "profile" item.author %}"name="comment_{{ item.id }}">{{ item.author }}</a>
+            </h5>
+            {{ item.text }}
+        </div>
+    </div>
+
+{% endfor %}

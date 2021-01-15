@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Пост: {{ profile.get_full_name }} {% endblock %}
+{% block content %}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-3 mb-3 mt-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="h2">
+                            <!-- author"s name -->
+                            {{ author.get_full_name }}
+                        </div>
+                        <div class="h3 text-muted">
+                            <!-- author"s username -->
+                            {{ author.get_username }}
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">
+                                Подписчиков: {{ author.following.count }} <br />
+                                Подписан: {{ author.follower.count }}
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="h6 text-muted">
+                                <!--Number of records -->
+                                <p>
+                                    Количество записей: {{ count_posts }}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <!-- Post -->
+                <div class="card mb-3 mt-1 shadow-sm">
+                    {% load thumbnail %}
+                        {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+                        <img class="card-img" id="test_id" src="{{ im.url }}">
+                    {% endthumbnail %}
+                    <div class="card-body">
+                        <p class="card-text">
+                            <!-- Link to the author"s page in the "href" attribute author"s username in the link text -->
+                            <a href=" {% url "profile" username %} "><strong class="d-block text-gray-dark">{{ username }}</strong></a>
+                            <!-- The text of the post -->
+                            <p>{{ post.text|linebreaksbr }}</p>
+                            {% include "includes/comments.html" with post=post items=items %}
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <!-- Link to edit, shown only to the author of the entry -->
+                                {% if user.is_authenticated and user.get_username == username %}
+                                    <a class="btn btn-sm text-muted" href="edit" role="button">Редактировать</a>
+                                {% endif %}
+                            </div>
+                                <!-- publication date  -->
+                            <small class="text-muted">{{ post.pub_date|date:"d M Y" }}</small>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

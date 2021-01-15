@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap_pagination %}
+
+{% block title %}Последние обновления {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Последние обновления </h1>
+
+        {% include "includes/menu.html" with index=True %}
+
+        {% load cache %}
+            {% cache 20 "home.html" %}
+        {% for post in page_obj %}
+            {% include "includes/post_item.html" with post=post %}
+        {% endfor %}
+            {% endcache %}
+        <div class="col-md-12" >
+            {% bootstrap_paginate page_obj range=10 %}
+        </div>
+    </div>
+{% endblock %}

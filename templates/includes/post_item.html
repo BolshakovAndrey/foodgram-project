@@ -1,0 +1,50 @@
+<div class="card mb-3 mt-1 shadow-sm">
+
+    <!-- The display of images -->
+    {% load thumbnail %}
+    {% thumbnail post.image "430x135" crop="center" upscale=True as im %}
+        <img class="card-img" src="{{ im.url }}" />
+    {% endthumbnail %}
+
+    <!-- Displaying the post text -->
+    <div class="card-body">
+        <p class="card-text">
+            <!-- Link to the author via @ -->
+            <a name="post_{{ post.id }}" href="{% url "profile" post.author.username %}">
+                <strong class="d-block text-gray-dark">@{{ post.author }}</strong>
+            </a>
+            {{ post.text|linebreaksbr }}
+        </p>
+
+        <!-- If the post belongs to a community, then we will display a link to it via # -->
+        {% if post.group %}
+            <a class="card-link muted" href="{% url "group_posts" post.group.slug %}">
+                <strong class="d-block text-gray-dark">#{{ post.group.title }}</strong>
+            </a>
+        {% endif %}
+
+        <!-- Displaying a link to comments -->
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group ">
+                <a class="btn btn-sm text-muted" href="{% url "post_view" post.author.username post.id %}" role="button">
+                    {% if post.comments.exists %}
+                        Количество коментариев: {{ post.comments.count }}
+                    {% else%}
+                        Добавить коммент
+                    {% endif %}
+                </a>
+
+                <!-- Link to edit the post for the author -->
+                {% if user == post.author %}
+                    <a class="btn btn-sm text-muted" href="{% url "post_edit" post.author.username post.id %}"
+                       role="button">
+                        Редактировать
+                    </a>
+                {% endif %}
+            </div>
+
+            <!-- Date of publish of the post -->
+            <small class="text-muted">{{ post.pub_date }}</small>
+        </div>
+    </div>
+</div>

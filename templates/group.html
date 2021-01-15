@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap_pagination %}
+
+{% block title %}Записи сообщества {{group.title}} {% endblock %}
+{% block header %}
+{% endblock %}
+{% block content %}
+    <h1>{{ group.title }}</h1>
+    <p>{{ group.description}}</p>
+    {% for post in page_obj %}
+        {% include "includes/post_item.html" with post=post %}
+    {% endfor %}
+    <div class="col-md-12" >
+        {% bootstrap_paginate page_obj range=1 %}
+    </div>
+{#    {% if page.has_other_pages %}#}
+{##}
+{#    {% endif %}#}
+{% endblock %}
