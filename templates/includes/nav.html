@@ -1,39 +1,29 @@
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand" href="#"><h5><span style="color:red">Ya</span>tube</h5></a>
-
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                {% if not user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link " href="#">Войти</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{% url "signup" %}">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url "password_change" %}">Изменить пароль</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{% url "logout" %}">Выйти</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link ">Пользователь: <span style="color: red">{{ user.username }}</span></a>
-                </li>
-                {% endif %}
+<header class="header">
+    <nav class="nav">
+        <div class="nav__container container">
+            {% if user.is_authenticated %}
+            Пользователь: {{ user.username }}
+            <ul class="nav__items list">
+                <li class="nav__item nav__item_active"><a href="#" class="nav__link link">Рецепты</a></li>
+                <li class="nav__item"><a href="#" class="nav__link link">Мои подписки</a></li>
+                <li class="nav__item"><a href="#" class="nav__link link">Создать рецепт</a></li>
+                <li class="nav__item"><a href="#" class="nav__link link">Избранное</a></li>
+                <li class="nav__item"><a href="#" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge" id="counter">4</span></li>
             </ul>
+            <ul class="nav__items list">
+                <li class="nav__item"><a href="#" class="nav__link link">Изменить пароль</a></li>
+                <li class="nav__item"><a href="{% url 'logout'%}" class="nav__link link">Выход</a></li>
+            </ul>
+            {% else %}
+            <ul class="nav__items list">
+                <li class="nav__item nav__item_active"><a href="#" class="nav__link link">Рецепты</a></li>
+                <li class="nav__item nav__item_disabled"><a href="#" class="nav__link link">Список покупок <span class="badge badge_style_blue nav__badge" id="counter">{% if purchase_counter > 0 %}{{ purchase_counter}}{% endif %}</span></a></li>
+            </ul>
+            <ul class="nav__items list">
+                <li class="nav__item"><a href="{% url 'login' %}" class="nav__link link">Войти</a></li>
+                <li class="nav__item"><a href="{% url 'signup' %}" class="button button_style_blue">Создать аккаунт</a></li>
+            </ul>
+            {% endif %}
         </div>
-    </div>
-</nav>
-
+    </nav>
+</header>
