@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-{% block title %}
-    Foodgram-Пароль успешно изменен
-{% endblock %}
+{% block title %}Foodgram-Выход из системы{% endblock %}
 {% block stylesheet %}
     {% load static %}
     <link rel="stylesheet" href="{% static '/pages/index.css' %}">
@@ -11,7 +9,7 @@
     <main class="main container">
         <div class="custom-center-block">
             <div class="main__header">
-                <h3 class="main__title">Ваш пароль успешно изменен!</h3>
+                <h3 class="main__title">Вы вышли из своей учётной записи. Ждём вас снова!</h3>
             </div>
             <div class="custom-button-block">
                 <button class="button button_style_blue">Перейти на главную</button>
@@ -19,6 +17,7 @@
         </div>
     </main>
 {% endblock %}
+
 
 
 
