@@ -1,6 +1,4 @@
 from django import template
-# All template tags and filters are registered in template.Library
-# add our filter to them as well
 register = template.Library()
 
 

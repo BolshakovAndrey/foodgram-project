@@ -2,7 +2,7 @@
 {% load user_filters %}
 {% load static %}
 
-{% block title %}Регистрация{% endblock title %}
+{% block title %}Foodgram-Signup{% endblock title %}
 
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static '/pages/form.css' %}">
@@ -18,13 +18,17 @@
             {% csrf_token %}
             {% for field in form %}
                 <div class="form__group">
-
                     <label for="{{ field.id_for_label }}" class="form__label">{{ field.label }}</label>
                     <div class="form__field-group">
                         {{ field|addclass:"form__input" }}
 
                         {% if field.errors %}
                             <span class="form__error">{{ field.errors.as_text|escape }}</span>
+                        {% endif %}
+
+                        {% if field.help_text %}
+                            <small id="{{ field.id_for_label }}-help"
+                                   style="color: grey">{{ field.help_text|safe }}</small>
                         {% endif %}
 
                     </div>

@@ -9,6 +9,7 @@ verify_ssl = true
 path = "*"
 django = "*"
 pytest = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.8"

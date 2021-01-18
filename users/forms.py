@@ -8,3 +8,7 @@ class CreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ("first_name", "username", "email")
+        help_texts = {
+            "first_name": "Введите Ваше имя",
+            "email": "Укажите Ваш действительный адрес почты"
+        }
