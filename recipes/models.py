@@ -56,7 +56,6 @@ class Ingredient(models.Model):
     )
     dimension = models.SmallIntegerField(
         'Единица измерения',
-        max_length=25
     )
 
     class Meta:
