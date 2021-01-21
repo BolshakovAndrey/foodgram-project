@@ -1,7 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator
 from django.urls import reverse
 
 from .validators import image_size_validator
@@ -107,7 +106,7 @@ class Recipe(models.Model):
         unique=True,
         max_length=50
     )
-    ingredients = models.ManyToManyField(
+    ingredient = models.ManyToManyField(
         Ingredient,
         verbose_name='ингредиент',
         related_name="recipe_ingredient",
@@ -133,7 +132,7 @@ class Recipe(models.Model):
 
     @property
     def ingredients_list(self):
-        return list(self.ingredients.all())
+        return list(self.ingredient.all())
 
     def get_absolute_url(self):
         return reverse('recipe_view', kwargs={'slug': self.slug})
