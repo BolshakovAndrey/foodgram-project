@@ -57,9 +57,6 @@ class FavoriteRecipe(models.Model):
         related_name='favorite_recipe'
     )
 
-    def __str__(self):
-        return self.recipe
-
     class Meta:
         verbose_name = 'Любимый рецепт'
         verbose_name_plural = 'Любимые рецепты'

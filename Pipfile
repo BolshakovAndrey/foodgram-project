@@ -11,6 +11,7 @@ django = "*"
 pytest = "*"
 coverage = "*"
 pillow = "*"
+factory-boy = "*"
 
 [requires]
 python_version = "3.8"

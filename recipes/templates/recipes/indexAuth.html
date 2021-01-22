@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load user_filters %}
+{% load static %}
+
+{% block title %}Foodgram-Рецепты{% endblock title %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static '/pages/index.css' %}">
+{% endblock stylesheet %}
+
+{% include nav.html %}
+
+{% block content %}
+    <main class="main container">
+        <div class="main__header">
+            <h1 class="main__title">{{ title }}</h1>
+{#            {% include 'recipes/tags.html' %}#}
+        </div>
+        <div class="card-list">
+            {% for recipe in page %}
+                {% include "recipes/recipe_item.html" with recipe=recipe %}
+
+            {% endfor %}
+        </div>
+{#        {% include 'recipes/paginator.html' with page=page paginator=paginator %}#}
+    </main>
+{% endblock %}
+
+{% block javascript %}
+    {% load static %}
+    <script src="{% static 'js/components/MainCards.js' %}"></script>
+    <script src="{% static 'js/components/Purchases.js' %}"></script>
+    <script src="{% static 'js/components/Favorites.js' %}"></script>
+    <script src="{% static 'js/config/config.js' %}"></script>
+    <script src="{% static 'js/components/CardList.js' %}"></script>
+    <script src="{% static 'js/components/Header.js' %}"></script>
+    <script src="{% static 'js/api/Api.js' %}"></script>
+    <script src="{% static 'indexAuth.js' %}"></script>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.urls import reverse, resolve
 
 from .forms import UserCreationForm
 from .views import SignUp
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 
 # class TestIndexView(TestCase):

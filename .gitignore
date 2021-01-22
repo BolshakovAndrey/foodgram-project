@@ -106,3 +106,7 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+
+# mediafiles
+/media/
+/css_js/

@@ -13,7 +13,7 @@ class Tag(models.Model):
     model Tags
     """
     TAGS = [
-        ('breakfast', 'завтрак'),
+        ('breakfast', 'Завтрак'),
         ('lunch', 'Обед'),
         ('dinner', 'Ужин')
     ]
