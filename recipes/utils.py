@@ -27,3 +27,4 @@ def get_ingredients_from_form(request):
             ]
 
     return ingredients
+

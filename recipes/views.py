@@ -14,6 +14,12 @@ class RecipeListView(ListView):
     template_name = 'recipes/indexAuth.html'
     paginate_by = 6
 
+    def get_queryset(self):
+        tags = self.request.GET.getlist('tag', '')
+        queryset = Recipe.recipes.filter_by_tags(
+            tags).select_related('author').prefetch_related('tag').all()
+        return queryset
+
 
 class RecipeCreateView(CreateView):
     model = Recipe

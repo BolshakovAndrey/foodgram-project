@@ -70,6 +70,18 @@ class Ingredient(models.Model):
         return self.title
 
 
+class RecipeManager(models.Manager):
+    """
+    The manager implements sorting by tags.
+    """
+    def filter_by_tags(self, tag):
+        if tag:
+            queryset = Recipe.recipes.filter(tag__name__in=tag.split(",")).distinct()
+        else:
+            queryset = Recipe.recipes.all()
+        return queryset
+
+
 class Recipe(models.Model):
     """
     model Recipe
@@ -97,7 +109,8 @@ class Recipe(models.Model):
     )
     cook_time = models.PositiveSmallIntegerField(
         verbose_name='Время приготовления',
-        help_text='в минутах'
+        help_text='в минутах',
+        null=True
     )
     slug = models.SlugField(
         verbose_name='Слаг',
@@ -123,6 +136,8 @@ class Recipe(models.Model):
         related_name='recipe_tag'
     )
 
+    recipes = RecipeManager()
+
     def __str__(self):
         return self.title
 
@@ -134,8 +149,8 @@ class Recipe(models.Model):
     def ingredients_list(self):
         return list(self.ingredient.all())
 
-    def get_absolute_url(self):
-        return reverse('recipe_view', kwargs={'slug': self.slug})
+    # def get_absolute_url(self):
+    #     return reverse('recipe_detail', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ('-pub_date',)
