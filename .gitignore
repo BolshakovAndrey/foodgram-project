@@ -110,3 +110,7 @@ dmypy.json
 # mediafiles
 /media/
 /css_js/
+
+
+/recipes/tests1.py
+/recipes/tests_2.py

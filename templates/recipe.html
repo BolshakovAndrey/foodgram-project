@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+div class="card" data-id="{{ recipe.id }}">
+<a href="{% url 'recipe-detail' slug=recipe.slug %}" class="link" target="_blank"><img
+        src="{{ recipe.photo.url }}" alt="Какой-то текст"
+        class="card__image"></a>
+<div class="card__body">
+    <a class="card__title link" href="{% url 'recipe-detail' slug=recipe.slug %}" target="_blank">{{ recipe.name }}</a>
+    <ul class="card__items">
+        {% for tag in recipe.tags.all %}
+            <li class="card__item"><span
+                    class="badge badge_style_{{ tag.display_color }}">{{ tag.display_name }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="card__items card__items_column">
+        <p class="card__text"><span class="icon-time"></span>
+            {{ recipe.cooking_time }} мин.</p>
+        <p class="card__text"><span class="icon-user"></span> <a
+                href="#" style="color: #000000">
+            {{ recipe.author.username }}
+        </a></p>
+    </div>
+</div>
+{% if user.is_authenticated %}
+    <div class="card__footer">
+        {% if recipe.id in purchases %}
+            <button class="button button_style_light-blue-outline"
+                    name="purchpurchases">
+                <span class="icon-check button__icon"></span> Рецепт добавлен
+            </button>
+        {% else %}
+            <button class="button button_style_light-blue"
+                    name="purchpurchases" data-out><span
+                    class="icon-plus button__icon"></span>Добавить в покупки
+            </button>
+        {% endif %}
+        <button class="button button_style_none" name="favorites" {% if recipe.id not in favorites and not all_favorite %} data-out {% endif %}>
+            <span class="icon-favorite {% if recipe.id in favorites or all_favorite %} icon-favorite_active {% endif %}"></span>
+        </button>
+    </div>
+{% endif %}
+</div>

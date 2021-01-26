@@ -41,7 +41,7 @@ class RecipePageTest(TestCase):
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'A good title')
-        self.assertTemplateUsed(response, 'indexAuth.html')
+        self.assertTemplateUsed(response, 'index.html')
 
     def test_recipe_detail_view(self):
         response = self.client.get(self.recipe.get_absolute_url())
@@ -57,7 +57,7 @@ class RecipePageTest(TestCase):
         """
         urls = [
             reverse("index"),
-            reverse("recipe_detail",
+            reverse("recipe-detail",
                     kwargs={"username": self.user.username, "pk": 1}), ]
         return urls
 
@@ -90,7 +90,7 @@ class RecipePageTest(TestCase):
         response = self.authorized_client.get("recipe_create")
         self.assertEqual(response.status_code, 404)
         response = self.authorized_client.post(
-            reverse("recipe_create"),
+            reverse("recipe-create"),
             data={"description": self.description},
             follow=True
         )
@@ -104,7 +104,7 @@ class RecipePageTest(TestCase):
         An unauthorized visitor cannot post a recipe (redirects to the login page).
         """
         response = self.unauthorized_client.post(
-            reverse("recipe_create"),
+            reverse("recipe-create"),
             data={"description": self.description, },
             follow=True
         )
@@ -121,7 +121,7 @@ class RecipePageTest(TestCase):
         and on a separate recipe page (recipe_detail).
         """
         self.authorized_client.post(
-            reverse("recipe_create"),
+            reverse("recipe-create"),
             data={"description": self.description},
             follow=True
         )
@@ -135,7 +135,7 @@ class RecipePageTest(TestCase):
         """
         recipe = Recipe.objects.create(description=self.description, author=self.user, )
         self.authorized_client.post(
-            reverse("recipe_update",
+            reverse("recipe-update",
                     kwargs={"username": recipe.author,
                             "pk": recipe.pk}),
             data={"description": self.edit},

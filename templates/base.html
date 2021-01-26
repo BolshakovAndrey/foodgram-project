@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>{% block title %}Foodgram{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | Foodgram</title>
+    <!-- Load static -->
     {% load static %}
-    {% csrf_token %}
-    {% block stylesheet %}css{% endblock stylesheet %}
 </head>
 <body>
-        {% include "includes/nav.html" %}
-        {% csrf_token %}
-    <main>
-        <div class="container">
-            {% block content %}{% endblock content %}
-        </div>
-    </main>
-    {% include "includes/footer.html" %}
-        {% block scripts %}{% endblock %}
+<main class="main container">
+    {% block content %}
+        <!-- содержимое страницы -->
+    {% endblock content %}
+</main>
+{% include 'footer.html' %}
 </body>
 </html>

@@ -45,10 +45,10 @@ class RecipeTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'A good title')
-        self.assertTemplateUsed(response, 'formChangeRecipe.html')
+        self.assertTemplateUsed(response, 'formCreateChangeRecipe.html')
 
     def test_recipe_create_view(self):
-        response = self.client.post(reverse('recipe_create'), {
+        response = self.client.post(reverse('recipe-create'), {
             'title': 'New title',
             'description': 'New text',
             'author': self.user,
@@ -58,7 +58,7 @@ class RecipeTests(TestCase):
         self.assertContains(response, 'New text')
 
     def test_recipe_update_view(self):
-        response = self.client.post(reverse('recipe_update', args='1'), {
+        response = self.client.post(reverse('recipe-update', args='1'), {
             'title': 'Updated title',
             'description': 'Updated text',
         })
@@ -66,5 +66,5 @@ class RecipeTests(TestCase):
 
     def test_recipe_delete_view(self):
         response = self.client.post(
-            reverse('recipe_delete', args='1'))
+            reverse('recipe-delete', args='1'))
         self.assertEqual(response.status_code, 302)

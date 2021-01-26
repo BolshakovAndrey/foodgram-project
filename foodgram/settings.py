@@ -45,9 +45,9 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'recipes',
     'community',
-    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

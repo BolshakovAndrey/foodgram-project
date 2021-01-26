@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load static recipes_util user_filters %}
+<ul class="tags">
+    {% with filter_values=request.GET|get_filter_values %}
+        {% for tag in all_tags %}
+            <li class="tags__item">
+                <a id="{{ tag.title }}" class="tags__checkbox tags__checkbox_style_{{ tag.checkbox_style }}
+      {% if tag.title in filter_values %}tags__checkbox_active{% endif %}" href="?{{ request|get_filter_link:tag }}"></a>
+                <span class="tags__label">{{ tag.title }}</span>
+            </li>
+        {% endfor %}
+    {% endwith %}
+</ul>
