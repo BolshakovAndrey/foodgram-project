@@ -11,9 +11,9 @@
     <div class="card-list">
         {% for recipe in object_list %}
             <div class="card" data-id={{ recipe.id }}>
-                <a href="{% url 'recipe' recipe.id %}" class="link" target="_self"><img src="{{ recipe.image.url }}" alt="Какой-то текст" class="card__image"></a>
+                <a href="{% url 'detail' recipe.id %}" class="link" target="_self"><img src="{{ recipe.image.url }}" alt="Какой-то текст" class="card__image"></a>
                 <div class="card__body">
-                    <a class="card__title link" href="{% url 'recipe' recipe.id %}" target="_self">{{ recipe.name }}</a>
+                    <a class="card__title link" href="{% url 'detail' recipe.id %}" target="_self">{{ recipe.name }}</a>
                     <ul class="card__items">
                         {% include 'tags.html' %}
                     </ul>
