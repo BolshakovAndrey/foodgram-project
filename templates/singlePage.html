@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Описание рецепта:{{ recipe.name }}{% endblock %}
 {% block content %}
-    {% load static recipes_extras %}
+    {% load static recipes_util %}
     {% block static %}
         <link rel="stylesheet" href="{% static 'pages/single.css' %}">
     {% endblock %}
     {% include 'nav.html' with index=True %}
     {% csrf_token %}
     <div class="single-card" data-id={{ recipe.id }} data-author={{ recipe.author.id }}>
-        <img src="{{ recipe.image.url }}" alt="какой-то текст" class="single-card__image">
+        <img src="{{ recipe.image.url }}" alt="" class="single-card__image">
         <div class="single-card__info">
             <div class="single-card__header-info">
                 <h1 class="single-card__title">{{ recipe.name }}</h1>

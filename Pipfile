@@ -12,6 +12,7 @@ pytest = "*"
 coverage = "*"
 pillow = "*"
 factory-boy = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.8"

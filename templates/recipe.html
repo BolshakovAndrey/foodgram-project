@@ -1,4 +1,4 @@
-div class="card" data-id="{{ recipe.id }}">
+<div class="card" data-id="{{ recipe.id }}">
 <a href="{% url 'recipe-detail' slug=recipe.slug %}" class="link" target="_blank"><img
         src="{{ recipe.photo.url }}" alt="Какой-то текст"
         class="card__image"></a>
@@ -11,7 +11,7 @@ div class="card" data-id="{{ recipe.id }}">
             </li>
         {% endfor %}
     </ul>
-    <div class="card__items card__items_column">
+    <div class="card__items card__items_column">>
         <p class="card__text"><span class="icon-time"></span>
             {{ recipe.cooking_time }} мин.</p>
         <p class="card__text"><span class="icon-user"></span> <a

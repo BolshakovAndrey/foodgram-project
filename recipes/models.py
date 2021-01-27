@@ -79,7 +79,7 @@ class Recipe(models.Model):
     )
     image = models.ImageField(
         verbose_name='Изображение',
-        upload_to='media/',
+        upload_to='recipes/',
         validators=[image_size_validator]
     )
     description = models.TextField(
