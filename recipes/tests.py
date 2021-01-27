@@ -33,7 +33,7 @@ class RecipePageTest(TestCase):
         self.edit = "Changed text"
 
     def test_recipe_listing(self):
-        self.assertEqual(f'{self.recipe.title}', 'A good title')
+        self.assertEqual(f'{self.recipe.name}', 'A good title')
         self.assertEqual(f'{self.recipe.author}', 'test_user')
         self.assertEqual(f'{self.recipe.description}', 'Content')
 

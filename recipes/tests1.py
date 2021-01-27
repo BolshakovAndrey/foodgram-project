@@ -23,13 +23,13 @@ class RecipeTests(TestCase):
 
     def test_string_representation(self):
         recipe = Recipe(title='A sample title')
-        self.assertEqual(str(recipe), recipe.title)
+        self.assertEqual(str(recipe), recipe.name)
 
     def test_get_absolute_url(self):
         self.assertEqual(self.recipe.get_absolute_url(), '/recipe/1/')
 
     def test_recipe_content(self):
-        self.assertEqual(f'{self.recipe.title}', 'A good title')
+        self.assertEqual(f'{self.recipe.name}', 'A good title')
         self.assertEqual(f'{self.recipe.author}', 'testuser')
         self.assertEqual(f'{self.recipe.description}', 'Content')
 

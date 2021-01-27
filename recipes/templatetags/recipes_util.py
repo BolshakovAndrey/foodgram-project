@@ -1,6 +1,6 @@
 from django import template
 
-from community.models import Follow, FavoriteRecipe
+from api.models import Follow, Favorite
 from recipes.models import Purchase
 
 register = template.Library()
@@ -15,12 +15,12 @@ def get_values(value):
 def get_filter_link(request, tag):
     new_request = request.GET.copy()
 
-    if tag.title in request.GET.getlist('filters'):
+    if tag.name in request.GET.getlist('filters'):
         filters = new_request.getlist('filters')
-        filters.remove(tag.title)
+        filters.remove(tag.name)
         new_request.setlist('filters', filters)
     else:
-        new_request.appendlist('filters', tag.title)
+        new_request.appendlist('filters', tag.name)
 
     return new_request.urlencode()
 

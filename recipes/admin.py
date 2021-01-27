@@ -10,11 +10,11 @@ class IngredientQuantityInline(admin.TabularInline):
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     """Description of the "Recipe" model fields for the administration site"""
-    prepopulated_fields = {'slug': ('title',)}
-    list_display = ('id', 'title', 'pub_date', 'author', 'favorite_recipes')
+    prepopulated_fields = {'slug': ('name',)}
+    list_display = ('id', 'name', 'pub_date', 'author', 'favorite_recipes')
     list_filter = ('author',)
     empty_value_display = '-пусто-'
-    search_fields = ('author', 'title', 'tag')
+    search_fields = ('author', 'name', 'tag')
     ordering = ('-pub_date',)
     readonly_fields = ('favorite_recipes',)
     inlines = (IngredientQuantityInline,)
@@ -29,7 +29,7 @@ class RecipeAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     """Description of the "Tag" model fields for the administration site"""
-    list_display = ('id', 'title',)
+    list_display = ('id', 'name',)
 
 
 @admin.register(Ingredient)

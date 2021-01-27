@@ -3,9 +3,9 @@
     {% with filter_values=request.GET|get_filter_values %}
         {% for tag in all_tags %}
             <li class="tags__item">
-                <a id="{{ tag.title }}" class="tags__checkbox tags__checkbox_style_{{ tag.checkbox_style }}
-      {% if tag.title in filter_values %}tags__checkbox_active{% endif %}" href="?{{ request|get_filter_link:tag }}"></a>
-                <span class="tags__label">{{ tag.title }}</span>
+                <a id="{{ tag.slug }}" class="tags__checkbox tags__checkbox_style_{{ tag.checkbox_style }}
+      {% if tag.slug in filter_values %}tags__checkbox_active{% endif %}" href="?{{ request|get_filter_link:tag }}"></a>
+                <span class="tags__label">{{ tag.name }}</span>
             </li>
         {% endfor %}
     {% endwith %}

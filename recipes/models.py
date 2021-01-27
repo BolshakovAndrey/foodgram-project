@@ -12,36 +12,27 @@ class Tag(models.Model):
     """
     model Tags
     """
-    TAGS = [
-        ('breakfast', 'Завтрак'),
-        ('lunch', 'Обед'),
-        ('dinner', 'Ужин')
-    ]
-    tag_options = {
-        'breakfast': ['orange', 'Завтрак'],
-        'lunch': ['green', 'Обед'],
-        'dinner': ['purple', 'Ужин']
-    }
-    title = models.CharField(
+
+    name = models.CharField(
         verbose_name='Название тега',
         max_length=10,
-        choices=TAGS,
+    )
+    slug = models.SlugField(
+        'Слаг тэга',
+        max_length=20,
+        db_index=True
+    )
+    checkbox_style = models.CharField(
+        'цвет тега',
+        max_length=15
     )
 
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
 
-    @property
-    def tag_color(self):
-        return self.tag_options[self.title[0]]
-
-    @property
-    def tag_name(self):
-        return self.tag_options[self.title[1]]
-
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Ingredient(models.Model):
@@ -53,8 +44,9 @@ class Ingredient(models.Model):
         max_length=200,
         db_index=True
     )
-    dimension = models.SmallIntegerField(
+    dimension = models.CharField(
         'Единица измерения',
+        max_length=20
     )
 
     class Meta:
@@ -70,18 +62,6 @@ class Ingredient(models.Model):
         return self.title
 
 
-class RecipeManager(models.Manager):
-    """
-    The manager implements sorting by tags.
-    """
-    def filter_by_tags(self, tag):
-        if tag:
-            queryset = Recipe.recipes.filter(tag__name__in=tag.split(",")).distinct()
-        else:
-            queryset = Recipe.recipes.all()
-        return queryset
-
-
 class Recipe(models.Model):
     """
     model Recipe
@@ -92,7 +72,7 @@ class Recipe(models.Model):
         related_name='recipe_author',
         on_delete=models.CASCADE,
     )
-    title = models.CharField(
+    name = models.CharField(
         verbose_name='Название рецепта',
         max_length=200,
         blank=False,
@@ -136,21 +116,12 @@ class Recipe(models.Model):
         related_name='recipe_tag'
     )
 
-    recipes = RecipeManager()
-
     def __str__(self):
-        return self.title
-
-    @property
-    def tag_list(self):
-        return list(self.tag.all())
+        return self.name
 
     @property
     def ingredients_list(self):
         return list(self.ingredient.all())
-
-    # def get_absolute_url(self):
-    #     return reverse('recipe_detail', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ('-pub_date',)
@@ -175,7 +146,7 @@ class IngredientQuantity(models.Model):
     )
     quantity = models.PositiveIntegerField(
         'Количество/объем',
-        default=0
+        default=0,
     )
 
     def __str__(self):
@@ -186,43 +157,22 @@ class IngredientQuantity(models.Model):
         verbose_name_plural = 'Количество ингредиентов'
 
 
-class PurchaseManager(models.Manager):
-    """
-    Interface for models that can make queries to the database
-    """
-
-    def get_shopper(self, user):
-        try:
-            return super().get_queryset().get(user=user)
-        except ObjectDoesNotExist:
-            purchase = Purchase(user=user)
-            purchase.save()
-            return purchase
-
-    def get_selected_recipes(self, user):
-        return super().get_queryset().get(user=user).recipes.all
-
-    def count_selected_recipes(self, user):
-        return super().get_queryset().get(user=user).recipes.count()
-
-
 class Purchase(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         verbose_name="Покупатель"
     )
-    recipes = models.ForeignKey(
+    recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
         verbose_name="Список рецептов",
         related_name="selected_recipes"
     )
-    purchase = PurchaseManager()
 
     class Meta:
         verbose_name = 'Покупка'
         verbose_name_plural = 'Покупки'
 
     def __str__(self):
-        return self.recipes.title
+        return self.recipe.name

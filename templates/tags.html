@@ -1,11 +1,11 @@
 {% for tag in recipe.tag.all %}
-    {% if tag.title == 'breakfast' %}
+    {% if tag.slug == 'breakfast' %}
         <li class="card__item"><span class="badge badge_style_orange">Завтрак</span></li>
     {% endif %}
-    {% if tag.title == 'lunch' %}
+    {% if tag.slug == 'lunch' %}
         <li class="card__item"><span class="badge badge_style_green">Обед</span></li>
     {% endif %}
-    {% if tag.title == 'dinner' %}
+    {% if tag.slug == 'dinner' %}
         <li class="card__item"><span class="badge badge_style_purple">Ужин</span></li>
     {% endif %}
 {% endfor %}

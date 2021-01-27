@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 
-from api.models import FavoriteRecipe, User, Follow
+from api.models import Favorite, User, Follow
 from recipes.models import Recipe, Ingredient, Purchase
 
 
@@ -14,7 +14,7 @@ class FavoriteView(View):
     def post(self, request):
         recipe_id = json.load(request.body).get('id')
         recipe = get_object_or_404(Recipe, id=recipe_id)
-        favorite, created = FavoriteRecipe.objects.get_or_create(
+        favorite, created = Favorite.objects.get_or_create(
             user=request.user, recipe=recipe
         )
         if created:
@@ -23,7 +23,7 @@ class FavoriteView(View):
 
     def delete(self, request, recipe_id):
         recipe = get_object_or_404(Recipe, id=recipe_id)
-        removed = FavoriteRecipe.objects.filter(
+        removed = Favorite.objects.filter(
             user=request.user, recipe=recipe
         ).delete()
         if removed:

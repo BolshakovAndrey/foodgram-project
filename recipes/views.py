@@ -5,7 +5,7 @@ from django.views.generic import ListView, UpdateView, DetailView, DeleteView, C
 
 from recipes.models import Recipe, Tag, User, Purchase
 from .forms import RecipeForm
-from .utils import get_ingredients_from_form, get_filters, get_all_tags, create_ingredients_amounts
+from .util import  get_filters, get_all_tags, create_ingredients_amounts
 
 
 class RecipeListView(ListView):

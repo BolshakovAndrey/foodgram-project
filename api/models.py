@@ -43,7 +43,7 @@ class Follow(models.Model):
             )]
 
 
-class FavoriteRecipe(models.Model):
+class Favorite(models.Model):
     """
     model favorite recipes
     """
