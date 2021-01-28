@@ -5,7 +5,7 @@ from django.views.generic import ListView, UpdateView, DetailView, DeleteView, C
 
 from recipes.models import Recipe, Tag, User, Purchase
 from .forms import RecipeForm
-from .util import  get_filters, get_all_tags, create_ingredients_amounts
+from .util import  get_filters, get_all_tags, create_ingredients_quantity
 
 
 class RecipeListView(ListView):
@@ -52,7 +52,7 @@ class RecipeCreateView(CreateView):
             )
             return self.form_invalid(form)
         recipe.save()
-        create_ingredients_amounts(recipe, form_data)
+        create_ingredients_quantity(recipe, form_data)
         form.save_m2m()
 
         return redirect(self.success_url)
@@ -90,7 +90,7 @@ class RecipeUpdateView(UpdateView):
             )
             return self.form_invalid(form)
         recipe.save()
-        create_ingredients_amounts(recipe, form_data)
+        create_ingredients_quantity(recipe, form_data)
         form.save_m2m()
         return redirect(self.get_success_url())
 
@@ -117,7 +117,7 @@ class RecipeDetailView(DetailView):
     Detail recipe
     """
     model = Recipe
-    template_name = 'singlePage.html'
+    template_name = 'recipe.html'
     template_name_field = "recipe"
 
 

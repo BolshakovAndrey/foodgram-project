@@ -45,8 +45,8 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    'users',
     'recipes',
+    'users',
     'api',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -149,3 +149,7 @@ LOGOUT_REDIRECT_URL = "/auth/login/"
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # specify the directory where the email files will be stored
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

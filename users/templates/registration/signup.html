@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 {% load user_filters %}
+{% block content %}
 {% load static %}
-
-{% block title %}Foodgram-Signup{% endblock title %}
 
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static '/pages/form.css' %}">
 {% endblock stylesheet %}
 
-{% block content %}
 
     <div class="main__header">
         <h1 class="main__title">Регистрация</h1>

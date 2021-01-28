@@ -8,6 +8,7 @@
     {% include 'nav.html' with index=True %}
     {% csrf_token %}
     <div class="single-card" data-id={{ recipe.id }} data-author={{ recipe.author.id }}>
+
         <img src="{{ recipe.image.url }}" alt="" class="single-card__image">
         <div class="single-card__info">
             <div class="single-card__header-info">

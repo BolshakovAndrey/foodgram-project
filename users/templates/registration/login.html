@@ -1,42 +1,37 @@
 {% extends 'base.html' %}
-{% load user_filters %}
-{% load static %}
-{% block title %}
-    Foodgram-Авторизация
-{% endblock title %}
-
-{% block stylesheet %}
-    <link rel="stylesheet" href="{% static "pages/form.css"  %}">
-{% endblock stylesheet %}
-
-
+{% block title %}Регистрация{% endblock %}
 {% block content %}
-<main class="main container">
-    <div class="main__header">
-        <h1 class="main__title">Войти на сайт</h1>
-    </div>
-    <div class="form-container">
-        <form class="form" method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <div class="form__group">
-                <label for="id_username" class="form__label">Имя</label>
-                <div class="form__field-group">
-                    <input type="text" name="username" id="id_username" class="form__input">
-                    <span class="form__error"></span>
+    {% load static %}
+    {% include 'nav.html' with login=True %}
+    {% load user_filters %}
+    <link rel="stylesheet" href="{% static 'pages/form.css' %}">
+    <main class="main container">
+        <div class="main__header">
+            <h1 class="main__title">Войти на сайт</h1>
+        </div>
+        <div class="form-container">
+            <form class="form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form__group">
+                    <label for="{{ form.username.id_for_label }}" class="form__label">Имя</label>
+                    <div class="form__field-group">
+                        {{ form.username|addclass:"form__input" }}
+                    </div>
                 </div>
-            </div>
-            <div class="form__group">
-                <label for="id_password" class="form__label">Пароль</label>
-                <div class="form__field-group">
-                    <input type="password" name="password" id="id_password" class="form__input">
-                    <span class="form__error">Имя пользователя и пароль не совпадают. Введите правильные данные.</span>
+                <div class="form__group">
+                    <label for="{{ form.password.id_for_label }}" class="form__label">Пароль</label>
+                    <div class="form__field-group">
+                        {{ form.password|addclass:"form__input" }}
+                        {% if form.errors %}
+                            <span class="form__error">Имя пользователя и пароль не совпадают. Введите правильные данные.</span>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-            <div class="form__footer">
-                <button class="button button_style_blue">Войти</button>
-                <a class="form__forgot-link">Забыли пароль?</a>
-            </div>
-        </form>
-    </div>
-</main>
-{% endblock content %}
+                <div class="form__footer">
+                    <button class="button button_style_blue">Войти</button>
+                    <a class="form__forgot-link" href="{% url 'password_reset' %}">Забыли пароль</a>
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock %}

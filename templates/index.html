@@ -21,9 +21,9 @@
                         {% include 'tags.html' %}
                     </ul>
                     <div class="card__items card__items_column">
-                        <p class="card__text"><span class="icon-time"></span>{{ recipe.prep_time }} мин.</p>
+                        <p class="card__text"><span class="icon-time"></span>{{ recipe.cook_time }} мин.</p>
                         <p class="card__text"><span class="icon-user"></span> <a
-                                href="{% url 'author' recipe.author.id %}" style="color: black">{{ recipe.author.get_full_name }}</a></p>
+                                href="{% url 'author' recipe.author.id %}" style="color: black">{{ recipe.author.get_full_name}}</a></p>
                     </div>
                 </div>
                 {% csrf_token %}

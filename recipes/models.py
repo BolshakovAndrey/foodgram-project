@@ -39,12 +39,12 @@ class Ingredient(models.Model):
     """
     model Ingredient
     """
-    title = models.CharField(
+    name = models.CharField(
         'Название ингредиента',
         max_length=200,
         db_index=True
     )
-    dimension = models.CharField(
+    unit = models.CharField(
         'Единица измерения',
         max_length=20
     )
@@ -52,14 +52,14 @@ class Ingredient(models.Model):
     class Meta:
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
-        ordering = ('title',)
+        ordering = ('name',)
         constraints = [models.UniqueConstraint(
-            fields=['title'],
+            fields=['name'],
             name='unique_ingredient')
         ]
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Recipe(models.Model):
@@ -84,7 +84,7 @@ class Recipe(models.Model):
     )
     description = models.TextField(
         verbose_name='Описание рецепта',
-        max_length=400,
+        max_length=1000,
         blank=False
     )
     cook_time = models.PositiveSmallIntegerField(
@@ -99,11 +99,11 @@ class Recipe(models.Model):
         unique=True,
         max_length=50
     )
-    ingredient = models.ManyToManyField(
+    ingredients = models.ManyToManyField(
         Ingredient,
         verbose_name='ингредиент',
         related_name="recipe_ingredient",
-        through='IngredientQuantity',
+        through='Amount',
         through_fields=('recipe', 'ingredient')
     )
     pub_date = models.DateField(
@@ -121,7 +121,7 @@ class Recipe(models.Model):
 
     @property
     def ingredients_list(self):
-        return list(self.ingredient.all())
+        return list(self.ingredients.all())
 
     class Meta:
         ordering = ('-pub_date',)
@@ -129,7 +129,7 @@ class Recipe(models.Model):
         verbose_name_plural = 'Рецепты'
 
 
-class IngredientQuantity(models.Model):
+class Amount(models.Model):
     """
     An intermediate model between the "Ingredient" and "Recipe" models,
     shows the quantity of ingredient in a particular recipe.
@@ -137,20 +137,19 @@ class IngredientQuantity(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='recipe_quantity'
     )
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
-        related_name='ingredient_quantity'
+        related_name='ingredient'
     )
-    quantity = models.PositiveIntegerField(
+    units = models.PositiveIntegerField(
         'Количество/объем',
         default=0,
     )
 
     def __str__(self):
-        return str(self.quantity)
+        return str(self.units)
 
     class Meta:
         verbose_name = 'Количество ингредиента'

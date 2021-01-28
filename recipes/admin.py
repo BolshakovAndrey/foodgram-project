@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import Tag, Recipe, Ingredient, IngredientQuantity, Purchase
+from .models import Tag, Recipe, Ingredient, Amount, Purchase
 
 
 class IngredientQuantityInline(admin.TabularInline):
     """Description of the Inline "IngredientQuantity" model fields for the administration site"""
-    model = Recipe.ingredient.through
+    model = Recipe.ingredients.through
 
 
 @admin.register(Recipe)
@@ -35,14 +35,14 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
     """Description of the "Ingredient" model fields for the administration site"""
-    list_display = ('id', 'title', 'dimension',)
-    search_fields = ('^title',)
+    list_display = ('id', 'name', 'unit',)
+    search_fields = ('^name',)
 
 
-@admin.register(IngredientQuantity)
-class IngredientQuantityAdmin(admin.ModelAdmin):
+@admin.register(Amount)
+class IngredientAmountAdmin(admin.ModelAdmin):
     """Description of the "Ingredient Quantity" model fields for the administration site"""
-    list_display = ('id', 'ingredient', 'recipe', 'quantity',)
+    list_display = ('id', 'ingredient', 'recipe', 'units',)
     search_fields = ('ingredient',)
 
 

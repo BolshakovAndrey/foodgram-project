@@ -64,7 +64,7 @@ class GetIngredientsView(View):
             name_istartwith=queryset.annotate(
                 title=F('name'),
                 dimension=F('dimension')
-            )).values('title', 'dimension'))
+            )).values('name', 'unit'))
         return JsonResponse(ingredients, safe=False)
 
 
