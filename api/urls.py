@@ -1,14 +1,14 @@
 from django.urls import path
 
 from .views import (
-    FavoriteView, IngredientListView, SubscribeView, PurchasesView
+    FavoriteView, SubscribeView, PurchasesView,GetIngredientsView
 )
 
 urlpatterns = [
     path('favorites', FavoriteView.as_view(), name='add_favorite'),
     path('favorites/<int:recipe_id>',
          FavoriteView.as_view(), name='remove_favorites'),
-    path('ingredients/', IngredientListView.as_view(), name='get_ingredients'),
+    path('ingredients/', GetIngredientsView.as_view(), name='get_ingredients'),
     path('purchases', PurchasesView.as_view(), name='purchases'),
     path(
         'purchases/<int:recipe_id>', PurchasesView.as_view(),

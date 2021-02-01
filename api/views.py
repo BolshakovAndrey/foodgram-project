@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 
 from api.models import Favorite, User, Follow
 from recipes.models import Recipe, Ingredient, Purchase
-from .serializers import IngredientsListSerializer, PurchaseSerializer
+# from .serializers import IngredientsListSerializer, PurchaseSerializer
 
 
 class FavoriteView(View):
@@ -60,26 +60,26 @@ class SubscribeView(View):
         return JsonResponse({'success': False})
 
 
-class IngredientListView(ListAPIView):
-    serializer_class = IngredientsListSerializer
-    model = Ingredient
-
-    def get_queryset(self):
-        if "query" in self.request.query_params:
-            return Ingredient.objects.filter(
-                name__startswith=self.request.query_params["query"].lower()
-            ).all()
-        return Ingredient.objects.all()
-
-
-# class GetIngredientsView(View):
+# class IngredientListView(ListAPIView):
+#     serializer_class = IngredientsListSerializer
+#     model = Ingredient
 #
-#     def get(self, request):
-#         qs = request.GET.get('query')
-#         ingredients = list(Ingredient.objects.filter(
-#             name__istartswith=qs).annotate(
-#             title=F('name'), dimension=F('unit')).values('title', 'dimension'))
-#         return JsonResponse(ingredients, safe=False)
+#     def get_queryset(self):
+#         if "query" in self.request.query_params:
+#             return Ingredient.objects.filter(
+#                 name__startswith=self.request.query_params["query"].lower()
+#             ).all()
+#         return Ingredient.objects.all()
+
+
+class GetIngredientsView(View):
+
+    def get(self, request):
+        qs = request.GET.get('query')
+        ingredients = list(Ingredient.objects.filter(
+            name__istartswith=qs).annotate(
+            title=F('name'), dimension=F('unit')).values('title', 'dimension'))
+        return JsonResponse(ingredients, safe=False)
 
 
 class PurchasesView(View):
@@ -102,15 +102,3 @@ class PurchasesView(View):
         ).delete()
 
         return JsonResponse({'success': True if count else False})
-
-
-
-# class CreatePurchaseView(CreateAPIView):
-#     serializer_class = PurchaseSerializer
-#
-#
-# class DeletePurchaseView(APIView):
-#     def delete(self, request, pk):
-#         purchase = get_object_or_404(Purchase, user=request.user, recipe=pk)
-#         purchase.delete()
-#         return Response({'success': 'true'})

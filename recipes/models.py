@@ -96,7 +96,6 @@ class Recipe(models.Model):
         verbose_name='Слаг',
         db_index=True,
         null=False,
-        unique=True,
         max_length=50
     )
     ingredients = models.ManyToManyField(
