@@ -1,2 +1,0 @@
-# foodgram-project
-foodgram-project

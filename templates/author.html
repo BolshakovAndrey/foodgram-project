@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}{{ author.get_full_name }}{% endblock %}
+{% block content %}
+    {% load static recipes_util %}
+    {% include 'nav.html' with index=True %}
+    {% csrf_token %}
+    <link rel="stylesheet" href="{% static 'pages/index.css' %}">
+    <div class="main__header">
+        <h1 class="main__title">{{ author.get_full_name }}</h1>
+        {% include 'tags_filter.html' %}
+    </div>
+    {% if request.user.is_authenticated %}
+        {% if request.user != author %}
+            <div class="author-subscribe" data-author="{{ author.id }}">
+                {% if author|is_following:request.user %}
+                    <p style="padding: 0 0 2em 0;">
+                        <button class="button button_style_light-blue button_size_auto" name="subscribe" >Отписаться от автора</button></p>
+                {% else %}
+                    <p style="padding: 0 0 2em 0;">
+                        <button class="button button_style_light-blue button_size_auto" name="subscribe" data-out>Подписаться на автора</button></p>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+    <div class="card-list">
+        {% for recipe in object_list %}
+            <div class="card" data-id={{ recipe.id }}>
+                <a href="{% url 'recipe' recipe.pk %}" class="link" target="_self"><img src="{{ recipe.image.url }}" alt="Какой-то текст" class="card__image"></a>
+                <div class="card__body">
+                    <a class="card__title link" href="{% url 'recipe' recipe.pk %}" target="_self">{{ recipe.name }}</a>
+                    <ul class="card__items">
+                        {% include 'tags.html' %}
+                    </ul>
+                    <div class="card__items card__items_column">
+                        <p class="card__text"><span class="icon-time"></span>{{ recipe.cook_time }} мин.</p>
+                        <p class="card__text"><span class="icon-user"></span> <a
+                                href="{% url 'author' author.id %}" style="color: black">{{ recipe.author.get_full_name }}</a></p>
+                    </div>
+
+                    {% if request.user.is_authenticated %}
+                        <div class="card__footer">
+                            <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+                            {% if recipe|is_favorite:user %}
+                                <button class="button button_style_none" name="favorites" ><span class="icon-favorite icon-favorite_active"></span></button>
+                                <div class="single-card__favorite-tooltip tooltip"></div>
+                            {% else %}
+                                <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite icon-favorite"></span></button>
+                                <div class="single-card__favorite-tooltip tooltip"></div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/config/config.js' %}"></script>
+    <script src="{% static 'js/components/MainCards.js' %}"></script>
+    <script src="{% static 'js/components/Purchases.js' %}"></script>
+    <script src="{% static 'js/components/Favorites.js' %}"></script>
+    <script src="{% static 'js/components/Subscribe.js' %}"></script>
+
+    <script src="{% static 'js/components/AuthorRecipe.js' %}"></script>
+    <script src="{% static 'js/components/Header.js' %}"></script>
+    <script src="{% static 'js/api/Api.js' %}"></script>
+    <script src="{% static 'authorRecipe.js' %}"></script>
+{% endblock %}

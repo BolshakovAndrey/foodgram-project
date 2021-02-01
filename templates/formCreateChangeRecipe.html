@@ -48,6 +48,15 @@
                         <label for="cantidad" class="form__label" id="cantidadVal">шт.</label>
                     </div>
                     <div class="form__field-group-ingredientes-container">
+                        {% for amount in recipe.amount_set.all %}
+                            <div id="ing{{ forloop.counter }}" class="form__field-item-ingredient">
+                                <span> {{ amount.ingredient.name }} - {{ amount.units}} {{ amount.ingredient.unit }}</span>
+                                <span class="form__field-item-delete"></span>
+                                <input id="nameIngredient_{{ forloop.counter }}" name="nameIngredient" type="hidden" value="{{ amount.ingredient.name }}">
+                                <input id="valueIngredient_{{ forloop.counter }}" name="valueIngredient" type="hidden" value="{{ amount.units }}">
+                                <input id="unitsIngredient_{{ forloop.counter }}" name="unitsIngredient" type="hidden" value="{{ amount.ingredient.unit}}">
+                            </div>
+                        {% endfor %}
                     </div>
                     <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>
                 </div>

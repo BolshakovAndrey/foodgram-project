@@ -9,7 +9,7 @@
         <h1 class="main__title">Мои подписки</h1>
     </div>
     <div class="card-list">
-        {% for author, recipes in fav_recipes.items %}
+        {% for author, recipes in favorite_recipes.items %}
             <div class="card-user" data-author="{{ author.id }}">
                 <div class="card-user__header">
                     <h2 class="card-user__title">{{ author.get_full_name }}</h2>
@@ -21,7 +21,7 @@
                                 <div class="recipe">
                                     <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipe__image">
                                     <h3 class="recipe__title">{{ recipe.name }}</h3>
-                                    <p class="recipe__text"><span class="icon-time"></span>{{ recipe.prep_time }}мин.</p>
+                                    <p class="recipe__text"><span class="icon-time"></span>{{ recipe.cook_time }}мин.</p>
                                 </div>
                             </li>
                         </ul>

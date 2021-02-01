@@ -1,4 +1,6 @@
 from django.contrib import admin
+
+from api.models import Favorite
 from .models import Tag, Recipe, Ingredient, Amount, Purchase
 
 
@@ -10,20 +12,18 @@ class IngredientQuantityInline(admin.TabularInline):
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     """Description of the "Recipe" model fields for the administration site"""
-    prepopulated_fields = {'slug': ('name',)}
-    list_display = ('id', 'name', 'pub_date', 'author', 'favorite_recipes')
-    list_filter = ('author',)
-    empty_value_display = '-пусто-'
-    search_fields = ('author', 'name', 'tag')
-    ordering = ('-pub_date',)
-    readonly_fields = ('favorite_recipes',)
-    inlines = (IngredientQuantityInline,)
+    filter_horizontal = ('tag', 'ingredients',)
+    list_filter = ('author', 'name', 'tag',)
+    list_display = (
+        'name', 'author', 'count_favorited'
+    )
+    ordering = ['name', ]
+    autocomplete_fields = ('ingredients',)
+    readonly_fields = ('count_favorited',)
 
-    def favorite_recipes(self, instance):
-        """The number of additions of recipe to favorites."""
-        return instance.favorite_recipe.count()
-
-    favorite_recipes.short_description = 'в избранном'
+    def count_favorited(self, obj):
+        count = Favorite.objects.filter(recipe=obj).count()
+        return count
 
 
 @admin.register(Tag)

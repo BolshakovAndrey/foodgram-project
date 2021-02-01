@@ -1,7 +1,0 @@
-.single-card__image {
-    object-fit: cover;
-    align-self: flex-start;
-    height: 480px;
-    width: 480px;
-    border-radius: 15px;
-}

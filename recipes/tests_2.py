@@ -42,7 +42,7 @@ class TestPageHeader(TestCase):
         self.user = _create_user()
 
     def test_not_auth_user(self):
-        response = self.client.get(reverse('index_view'))
+        response = self.client.get(reverse('index'))
         self.assertEqual(
             response.status_code, 200,
             msg='Главная страница должна быть доступна')
@@ -50,7 +50,7 @@ class TestPageHeader(TestCase):
         self.assertIn(
             html, response.content.decode(),
             msg='У неавторизованного юзера в шапке должен быть пункт Войти')
-        html = f'<a href="{reverse("recipe_new_view")}"' \
+        html = f'<a href="{reverse("new_recipe")}"' \
                f' class="nav__link link">Создать рецепт'
         self.assertNotIn(
             html, response.content.decode(),
@@ -59,7 +59,7 @@ class TestPageHeader(TestCase):
 
     def test_auth_user(self):
         self.client.force_login(self.user)
-        response = self.client.get(reverse('index_view'))
+        response = self.client.get(reverse('index'))
         html = f'<a href="{reverse("login")}" class="nav__link link">Войти'
         self.assertNotIn(
             html, response.content.decode(),
@@ -68,7 +68,7 @@ class TestPageHeader(TestCase):
         self.assertIn(
             html, response.content.decode(),
             msg='У залогиненного юзера в шапке должен быть пункт смены пароля')
-        html = f'<a href="{reverse("recipe_new_view")}"' \
+        html = f'<a href="{reverse("new_recipe ")}"' \
                f' class="nav__link link">Создать рецепт'
         self.assertIn(
             html, response.content.decode(),

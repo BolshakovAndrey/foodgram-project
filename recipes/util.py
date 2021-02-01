@@ -3,7 +3,8 @@ from django.shortcuts import get_object_or_404
 from recipes.models import Ingredient, Amount, Tag
 
 
-def create_ingredients_quantity(instance, form_data):
+def create_ingredients_amounts(instance, form_data):
+
     names = [
         value for name, value in form_data.items()
         if name.startswith('nameIngredient_')
@@ -12,7 +13,7 @@ def create_ingredients_quantity(instance, form_data):
         value for name, value in form_data.items()
         if name.startswith('valueIngredient_')
     ]
-    ingredients_quantity = [
+    ingredients_amounts = [
         Amount(
             ingredient=get_object_or_404(Ingredient, name=ingredient),
             units=int(unit),
@@ -20,7 +21,7 @@ def create_ingredients_quantity(instance, form_data):
         )
         for ingredient, unit in zip(names, units)
     ]
-    Amount.objects.bulk_create(ingredients_quantity)
+    Amount.objects.bulk_create(ingredients_amounts)
 
 
 def get_all_tags():

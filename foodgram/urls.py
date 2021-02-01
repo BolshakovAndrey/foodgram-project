@@ -16,9 +16,10 @@ urlpatterns = [
     path('about/tech/', TemplateView.as_view(
         template_name='about.html'
     ), name='about_tech'),
-    # path('__debug__/', include(debug_toolbar.urls))
+    path('api/', include('api.urls')),
+    path('', include("recipes.urls")),
 ]
-
+# http://127.0.0.1:8000/static/js/api/Api.js
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
