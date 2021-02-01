@@ -43,7 +43,6 @@ else:
     }
 
 # Application definition
-
 INSTALLED_APPS = [
     'recipes',
     'users',

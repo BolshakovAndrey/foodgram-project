@@ -3,7 +3,7 @@ import csv
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
 from django.http import Http404, HttpResponse
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, UpdateView, DetailView, DeleteView, CreateView
 
@@ -229,3 +229,19 @@ def purchaselist_download(request):
             writer.writerow([f'{name} - {total} {dimension}'])
 
     return response
+
+
+def page_not_found(request, exception):
+    return render(request, "misc/404.html", {"path": request.path},
+                  status=404
+                  )
+
+
+def server_error(request):
+    return render(request, "misc/500.html", status=500)
+
+
+def permission_denied(request, exception):
+    return render(request, "misc/403.html", {"path": request.path},
+                  status=403
+                  )

@@ -1,16 +1,12 @@
 import json
 
-from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import F
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic import View
-from rest_framework.generics import ListAPIView, CreateAPIView
-from rest_framework.views import APIView
 
-from api.models import Favorite, User, Follow
-from recipes.models import Recipe, Ingredient, Purchase
-# from .serializers import IngredientsListSerializer, PurchaseSerializer
+from api.models import Favorite, Follow, User
+from recipes.models import Ingredient, Purchase, Recipe
 
 
 class FavoriteView(View):
@@ -58,18 +54,6 @@ class SubscribeView(View):
         if removed:
             return JsonResponse({'success': True})
         return JsonResponse({'success': False})
-
-
-# class IngredientListView(ListAPIView):
-#     serializer_class = IngredientsListSerializer
-#     model = Ingredient
-#
-#     def get_queryset(self):
-#         if "query" in self.request.query_params:
-#             return Ingredient.objects.filter(
-#                 name__startswith=self.request.query_params["query"].lower()
-#             ).all()
-#         return Ingredient.objects.all()
 
 
 class GetIngredientsView(View):
