@@ -3,13 +3,15 @@ import csv
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
 from django.http import Http404, HttpResponse
-from django.shortcuts import redirect, get_object_or_404, render
-from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, UpdateView, DetailView, DeleteView, CreateView
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
-from recipes.models import Recipe, Tag, User, Purchase
+from recipes.models import Purchase, Recipe, Tag, User
+
 from .forms import RecipeForm
-from .util import get_filters, get_all_tags, create_ingredients_amounts
+from .util import create_ingredients_amounts, get_all_tags, get_filters
 
 
 class RecipeListView(ListView):

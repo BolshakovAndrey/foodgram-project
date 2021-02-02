@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 
-from recipes.models import Ingredient, Amount, Tag
+from recipes.models import Amount, Ingredient, Tag
 
 
 def create_ingredients_amounts(instance, form_data):

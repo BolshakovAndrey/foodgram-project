@@ -1,9 +1,9 @@
 import csv
 
+import factory
 from django.test import Client, TestCase
 from django.urls import reverse
 
-import factory
 from recipes.models import Amount, Ingredient, Recipe, Tag, User
 
 

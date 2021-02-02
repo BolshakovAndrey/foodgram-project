@@ -1,11 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.test import TestCase
-from django.urls import reverse, resolve
+from django.urls import resolve, reverse
 
 from .forms import UserCreationForm
 from .views import SignUp
-from django.contrib.auth.models import User
-
 
 # class TestIndexView(TestCase):
 #     def test_anonymous_cannot_see_page(self):
