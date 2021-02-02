@@ -10,6 +10,9 @@ from recipes.models import Ingredient, Purchase, Recipe
 
 
 class FavoriteView(View):
+    """
+    view Favorite
+    """
 
     def post(self, request):
         recipe_id = json.loads(request.body).get('id')
@@ -32,6 +35,9 @@ class FavoriteView(View):
 
 
 class SubscribeView(View):
+    """
+    view Subscribe
+    """
 
     def post(self, request):
         author_id = json.loads(request.body).get('id')
@@ -57,16 +63,22 @@ class SubscribeView(View):
 
 
 class GetIngredientsView(View):
+    """
+    creates AJAX request for ingredients
+    """
 
     def get(self, request):
-        qs = request.GET.get('query')
+        queryset = request.GET.get('query')
         ingredients = list(Ingredient.objects.filter(
-            name__istartswith=qs).annotate(
+            name__istartswith=queryset).annotate(
             title=F('name'), dimension=F('unit')).values('title', 'dimension'))
         return JsonResponse(ingredients, safe=False)
 
 
 class PurchasesView(View):
+    """
+    view Purchase
+    """
 
     def post(self, request):
         recipe_id = json.loads(request.body).get('id')

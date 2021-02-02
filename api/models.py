@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import models
 
-from recipes.models import Ingredient, Recipe
+from recipes.models import Recipe
 
 User = get_user_model()
 
@@ -31,7 +31,7 @@ class Follow(models.Model):
             )
 
     def __str__(self):
-        return f'{self.user.username} подписался на {self.author.username}'
+        return f'{self.user.name} подписался на {self.author.name}'
 
     class Meta:
         unique_together = ('user', 'author')
