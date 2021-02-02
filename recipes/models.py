@@ -53,10 +53,10 @@ class Ingredient(models.Model):
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
         ordering = ('name',)
-        constraints = [models.UniqueConstraint(
-            fields=['name'],
-            name='unique_ingredient')
-        ]
+        # constraints = [models.UniqueConstraint(
+        #     fields=['name'],
+        #     name='unique_ingredient')
+        # ]
 
     def __str__(self):
         return self.name
@@ -121,6 +121,11 @@ class Recipe(models.Model):
     @property
     def ingredients_list(self):
         return list(self.ingredients.all())
+
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
 
     class Meta:
         ordering = ('-pub_date',)
