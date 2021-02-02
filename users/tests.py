@@ -1,27 +1,16 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import resolve, reverse
 
 from .forms import UserCreationForm
 from .views import SignUp
 
-# class TestIndexView(TestCase):
-#     def test_anonymous_cannot_see_page(self):
-#         response = self.client.get(reverse("index"))
-#         self.assertRedirects(response, "/accounts/login/?next=/index/")
-#
-#     def test_authenticated_user_can_see_page(self):
-#         user = User.objects.create_user("Juliana," "juliana@dev.io", "some_pass")
-#         self.client.force_login(user=user)
-#         response = self.client.get(reverse("index"))
-#         self.assertEqual(response.status_code, 200)
 
 class TestUserProfile(TestCase):
 
     def test_user_creation(self):
         """
-        Testing the creation of a profile for a registered user/superuser
+        Тестирование создания профиля для зарегистрированного пользователя/суперпользователя
         """
         User = get_user_model()
         user = User.objects.create_user(
@@ -50,6 +39,9 @@ class TestUserProfile(TestCase):
 
 
 class SignupPageTests(TestCase):
+    """
+    Тестирование страницы регистрации
+    """
 
     def setUp(self):
         url = reverse('signup')

@@ -8,7 +8,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from recipes.models import Purchase, Recipe, Tag, User
+from recipes.models import Purchase, Recipe, User
 
 from .forms import RecipeForm
 from .util import create_ingredients_amounts, get_all_tags, get_filters
@@ -25,8 +25,8 @@ class RecipeListView(ListView):
     template_name_field = "recipes"
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        return get_filters(self.request, qs)
+        queryset = super().get_queryset()
+        return get_filters(self.request, queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -154,9 +154,9 @@ class AuthorRecipeListView(RecipeListView):
 
     def get_queryset(self):
         current_user = get_object_or_404(User, pk=self.kwargs.get('pk'))
-        qs = Recipe.objects.filter(author=current_user)
+        queryset = Recipe.objects.filter(author=current_user)
 
-        return get_filters(self.request, qs)
+        return get_filters(self.request, queryset)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -174,8 +174,8 @@ class FavoriteListView(RecipeListView):
 
     def get_queryset(self):
         author = self.request.user
-        qs = Recipe.objects.filter(favorite_recipe__user=author).all()
-        return get_filters(self.request, qs)
+        queryset = Recipe.objects.filter(favorite_recipe__user=author).all()
+        return get_filters(self.request, queryset)
 
 
 class FollowListView(ListView):
@@ -200,6 +200,9 @@ class FollowListView(ListView):
 
 
 class PurchaseList(ListView):
+    """
+    view  Shopping list
+    """
     model = Purchase
     template_name = 'purchaselist.html'
 
