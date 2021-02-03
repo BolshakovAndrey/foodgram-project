@@ -1,8 +1,6 @@
 from django.contrib import admin
 
-from api.models import Favorite
-
-from .models import Amount, Ingredient, Purchase, Recipe, Tag
+from .models import Amount, Favorite, Follow, Ingredient, Purchase, Recipe, Tag
 
 
 class IngredientQuantityInline(admin.TabularInline):
@@ -51,3 +49,13 @@ class IngredientAmountAdmin(admin.ModelAdmin):
 class PurchaseAdmin(admin.ModelAdmin):
     """Description of the "Purchase" model fields for the administration site"""
     list_display = ('id', 'user',)
+
+
+@admin.register(Favorite)
+class FavoriteRecipeAdmin(admin.ModelAdmin):
+    list_display = ('user', 'recipe')
+
+
+@admin.register(Follow)
+class FollowAdmin(admin.ModelAdmin):
+    list_display = ('user', 'author')

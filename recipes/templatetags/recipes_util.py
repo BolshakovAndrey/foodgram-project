@@ -1,7 +1,6 @@
 from django import template
 
-from api.models import Favorite, Follow
-from recipes.models import Purchase
+from recipes.models import Favorite, Follow, Purchase
 
 register = template.Library()
 

@@ -4,7 +4,7 @@ class Api {
         this.apiUrl =  apiUrl;
     }
   getPurchases () {
-    return fetch(`/api/purchases`, {
+    return fetch(apiUrl + `/purchases`, {
       headers: {
         'Content-Type': 'application/json',
         'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value
@@ -18,7 +18,7 @@ class Api {
       })
   }
   addPurchases (id) {
-    return fetch(`/api/purchases`, {
+    return fetch(apiUrl + `/purchases`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ class Api {
       })
   }
   removePurchases (id){
-    return fetch(`/api/purchases/${id}`, {
+    return fetch(apiUrl + `/purchases/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ class Api {
       })
   }
   addSubscriptions(id) {
-    return fetch(`/api/subscriptions`, {
+    return fetch(`/subscriptions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,7 +69,7 @@ class Api {
       })
   }
   removeSubscriptions (id) {
-    return fetch(`/api/subscriptions/${id}`, {
+    return fetch(`/subscriptions/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ class Api {
       })
   }
   addFavorites (id)  {
-    return fetch(`/api/favorites`, {
+    return fetch(`/favorites/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ class Api {
         })
   }
   removeFavorites (id) {
-    return fetch(`/api/favorites/${id}`, {
+    return fetch(`/favorites/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ class Api {
         })
   }
     getIngredients  (text)  {
-        return fetch(`/api/ingredients?query=${text}`, {
+        return fetch(`/ingredients?query=${text}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': document.getElementsByName('csrfmiddlewaretoken')[0].value

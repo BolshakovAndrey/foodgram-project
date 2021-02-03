@@ -1,14 +1,16 @@
 import csv
+import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
+from django.views import View
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from recipes.models import Purchase, Recipe, User
+from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe, User
 
 from .forms import RecipeForm
 from .util import create_ingredients_amounts, get_all_tags, get_filters
@@ -234,6 +236,119 @@ def purchaselist_download(request):
             writer.writerow([f'{name} - {total} {dimension}'])
 
     return response
+
+
+class FavoriteView(View):
+    """
+    view Favorite
+    """
+
+    def post(self, request):
+        """
+        Adding a Recipe to Favorites
+        """
+        recipe_id = json.loads(request.body).get('id')
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        favorite, created = Favorite.objects.get_or_create(
+            user=request.user, recipe=recipe
+        )
+        if created:
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+
+    def delete(self, request, recipe_id):
+        """
+        Deleting a Recipe from Favorites
+        """
+
+        recipe = get_object_or_404(Recipe, id=recipe_id)
+        removed = Favorite.objects.filter(
+            user=request.user, recipe=recipe
+        ).delete()
+        if removed:
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+
+
+class SubscribeView(View):
+    """
+    view Subscribe
+    """
+
+    def post(self, request):
+        """
+        Subscribe the author.
+        """
+        author_id = json.loads(request.body).get('id')
+        author = get_object_or_404(User, id=author_id)
+        if request.user == author:
+            return JsonResponse({'success': False})
+
+        follow, created = Follow.objects.get_or_create(
+            user=request.user, author=author
+        )
+        if created:
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+
+    def delete(self, request, author_id):
+        """
+        Unsubscribe the author.
+        """
+
+        author = get_object_or_404(User, id=author_id)
+        removed = Follow.objects.filter(
+            user=request.user, author=author
+        ).delete()
+        if removed:
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+
+
+class GetIngredientsView(View):
+    """
+    creates AJAX request for ingredients
+    """
+
+    def get(self, request):
+        queryset = request.GET.get('query')
+        ingredients = list(Ingredient.objects.filter(
+            name__istartswith=queryset).annotate(
+            title=F('name'), dimension=F('unit')).values('title', 'dimension'))
+        return JsonResponse(ingredients, safe=False)
+
+
+class PurchasesView(View):
+    """
+    view Purchase
+    """
+
+    def post(self, request):
+        """
+        Adding a recipe to the shopping list
+        """
+
+        recipe_id = json.loads(request.body).get('id')
+        recipe = get_object_or_404(Recipe, pk=recipe_id)
+
+        purchaselist, created = Purchase.objects.get_or_create(
+            user=request.user, recipe=recipe
+        )
+        if created:
+            return JsonResponse({'success': True})
+        return JsonResponse({'success': False})
+
+    def delete(self, request, recipe_id):
+        """
+        Removing a prescription from the shopping list.
+        """
+
+        count, _ = Purchase.objects.filter(
+            user=request.user,
+            recipe=recipe_id,
+        ).delete()
+
+        return JsonResponse({'success': True if count else False})
 
 
 def page_not_found(request, exception):

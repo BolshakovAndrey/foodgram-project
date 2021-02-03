@@ -21,7 +21,6 @@ urlpatterns = [
     path('about/tech/', TemplateView.as_view(
         template_name='about.html'
     ), name='about_tech'),
-    path('api/', include('api.urls')),
     path('', include("recipes.urls")),
 ]
 

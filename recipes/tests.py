@@ -1,17 +1,21 @@
-import csv
-
 import factory
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from recipes.models import Amount, Ingredient, Recipe, Tag, User
+from recipes.models import (Amount, Favorite, Follow, Ingredient, Recipe, Tag,
+                            User)
 
 
 def _create_recipe(author, name, tag):
     products = [Ingredient.objects.create(
         name=f'testIng{i}', unit=i) for i in range(2)]
-    recipe = Recipe(author=author, name=name,
-                    description='test test test', cook_time=5)
+    recipe = Recipe(
+        author=author,
+        name=name,
+        description='test test test',
+        slug='testtesttest',
+        image='static/images/testCardImg.png',
+        cook_time=5)
     recipe.save()
     recipe.tag.add(tag)
     for product in products:
@@ -20,6 +24,12 @@ def _create_recipe(author, name, tag):
         ingredient.save()
     return recipe
 
+
+# def _create_subscribe(subscriber):
+#     subscribe_id = '1'
+#     subscriber = get_object_or_404(User, id=subscribe_id)
+#     subscribe = Follow.objects.get_or_create(author=subscriber)
+#     subscribe.followers
 
 class UserFactory(factory.Factory):
     """
@@ -229,4 +239,80 @@ class TestRecipePage(TestCase):
             'Редактировать рецепт', response2.content.decode(),
             msg=('Кнопка редактирования не должна быть на странице'
                  ' чужого рецепта'))
+
+
+class TestTagFilter(TestCase):
+    """
+    Тесты для фильтрации по тегам.
+    Проверяет работу фильтров по тегам на главной странице,
+    странице профиля и избранного.
+    """
+
+    def setUp(self):
+        self.client = Client()
+        self.user = _create_user()
+        self.client.force_login(self.user)
+        tag1 = Tag.objects.create(name='завтрак', slug='breakfast',
+                                  checkbox_style='orange')
+        tag2 = Tag.objects.create(name='обед', slug='lunch', checkbox_style='green')
+        for i in range(15):
+            if i % 2 == 0:
+                _create_recipe(self.user, f'recipe {i}', tag2)
+            else:
+                _create_recipe(self.user, f'recipe {i}', tag1)
+
+    def test_filter(self):
+        urls = [
+            f'{reverse("index")}?tag=lunch',
+            f'{reverse("index")}?tag=lunch&page=2',
+            f'{reverse("author", args=[self.user.id])}?tag=lunch',
+            f'{reverse("author", args=[self.user.id])}?tag=lunch&page=2',
+        ]
+        tag = 'card__item"><span class="badge badge_style_orange">завтрак'
+        for url in urls:
+            resp = self.client.get(url)
+            self.assertNotIn(
+                tag, resp.content.decode(),
+                msg=('Фильтры по тегам должны работать правильно на'
+                     f'{resp.request["PATH_INFO"]}, а также при пагинации'))
+        self.client.force_login(self.user)
+        for i in range(1, 3):
+            self.client.post(
+                reverse('favorites'), data={'id': f'{i}'},
+                content_type='application/json')
+        resp = self.client.get(f'{reverse("favorites")}?tag=lunch')
+        self.assertNotIn(
+            tag, resp.content.decode(),
+            msg='Фильтры должны правильно работать на странице с избранным')
+
+
+class TestFollowPage(TestCase):
+    """
+    Тесты страницы подписок.
+    Для авторизованного пользователя проверяется, что страница доступна и что
+    на странице присутствует автор добавленный в подписки.
+    """
+
+    def setUp(self):
+        self.client = Client()
+        self.user = _create_user()
+        self.user2 = _create_user(username='Another test user',
+                                  email='another@test.test',
+                                  password='onetwo34',
+                                  first_name='Another test user first_name')
+        tag = Tag.objects.create(name='завтрак', slug='breakfast')
+        self.recipe = _create_recipe(self.user, 'Test recipe', tag)
+        Follow.objects.create(user=self.user2, author=self.user)
+
+    def test_auth_user(self):
+        self.client.force_login(self.user2)
+        response = self.client.get(reverse('subscriptions'), follow=True)
+        self.assertEqual(
+            response.status_code, 200,
+            msg='Страница подписок доступна авторизованному юзеру')
+        self.assertIn(
+            'Test user first_name', response.content.decode(),
+            msg='На странице подписок должен быть добавленный автор')
+
+
 
