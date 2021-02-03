@@ -2,7 +2,7 @@
 {% block title %}Мои подписки{% endblock %}
 {% block content %}
     {% load static %}
-    {% include 'nav.html' with mysubs=True %}
+    {% include 'includes/nav.html' with mysubs=True %}
     {% csrf_token %}
     <link rel="stylesheet" href="{% static 'pages/myFollow.css' %}">
     <div class="main__header">

@@ -2,7 +2,7 @@
 {% block title %}Список покупок{% endblock %}
 {% block content %}
     {% load static %}
-    {% include 'nav.html' with shoplist=True %}
+    {% include 'includes/nav.html' with shoplist=True %}
     {% csrf_token %}
     <link rel="stylesheet" href="{% static 'pages/shopList.css' %}">
     <div class="main__header">
@@ -17,7 +17,7 @@
                         <h3 class="recipe__title">{{ obj.recipe.name }}</h3>
                         <p class="recipe__text"><span class="icon-time"></span>{{ obj.recipe.cook_time }} мин.</p>
                     </div>
-                    <a href="#" class="shopping-list__button link">Удалить</a>
+                    <a class="shopping-list__button link">Удалить</a>
                 </li>
             {% endfor %}
         </ul>

@@ -1,27 +1,25 @@
-import debug_toolbar
 from django.conf import settings
+from django.conf.urls import handler403, handler404, handler500
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from django.views.generic import TemplateView
-from django.conf.urls import handler404, handler500, handler403
 
-handler404 = "recipes.views.page_not_found" # noqa
-handler500 = "recipes.views.server_error" # noqa
-handler403 = "recipes.views.permission_denied" # noqa
+handler404 = 'recipes.views.page_not_found' # noqa
+handler500 = 'recipes.views.server_error' # noqa
+handler403 = 'recipes.views.permission_denied' # noqa
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("auth/", include("users.urls")),
-    path("auth/", include("django.contrib.auth.urls")),
+    path('auth/', include('users.urls')),
+    path('auth/', include('django.contrib.auth.urls')),
     path('', include('recipes.urls')),
     path('about/author/', TemplateView.as_view(
-        template_name='about.html'
+        template_name='about.html' #TODO  докрутить страницу
     ), name='about_author'),
     path('about/tech/', TemplateView.as_view(
-        template_name='about.html'
+        template_name='about.html' #TODO  докрутить страницу
     ), name='about_tech'),
-    path('', include("recipes.urls")),
 ]
 
 if settings.DEBUG:
@@ -31,4 +29,4 @@ if settings.DEBUG:
 if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns += (path("__debug__/", include(debug_toolbar.urls)),)
+    urlpatterns += (path('__debug__/', include(debug_toolbar.urls)),)

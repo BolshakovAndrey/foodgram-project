@@ -24,7 +24,7 @@ class RecipeListView(ListView):
     context_object_name = 'recipes'
     template_name = 'index.html'
     paginate_by = 6
-    template_name_field = "recipes"
+    template_name_field = 'recipes'
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -34,6 +34,7 @@ class RecipeListView(ListView):
         context = super().get_context_data(**kwargs)
         context.update({'all_tags': get_all_tags()})
         return context
+
 
 
 class RecipeCreateView(LoginRequiredMixin, CreateView):
@@ -80,7 +81,7 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     """
     model = Recipe
     form_class = RecipeForm
-    template_name = "formCreateChangeRecipe.html"
+    template_name = 'formCreateChangeRecipe.html'
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -126,7 +127,7 @@ class RecipeDetailView(DetailView):
     """
     model = Recipe
     template_name = 'recipe.html'
-    template_name_field = "recipe"
+    template_name_field = 'recipe'
 
 
 class RecipeDeleteView(LoginRequiredMixin, DeleteView):
@@ -176,7 +177,7 @@ class FavoriteListView(RecipeListView):
 
     def get_queryset(self):
         author = self.request.user
-        queryset = Recipe.objects.filter(favorite_recipe__user=author).all()
+        queryset = Recipe.recipes.filter(favorite_recipes__user=author).all()
         return get_filters(self.request, queryset)
 
 
@@ -352,16 +353,16 @@ class PurchasesView(View):
 
 
 def page_not_found(request, exception):
-    return render(request, "misc/404.html", {"path": request.path},
+    return render(request, 'misc/404.html', {'path': request.path},
                   status=404
                   )
 
 
 def server_error(request):
-    return render(request, "misc/500.html", status=500)
+    return render(request, 'misc/500.html', status=500)
 
 
 def permission_denied(request, exception):
-    return render(request, "misc/403.html", {"path": request.path},
+    return render(request, 'misc/403.html', {'path': request.path},
                   status=403
                   )

@@ -5,7 +5,7 @@
     {% block static %}
         <link rel="stylesheet" href="{% static 'pages/single.css' %}">
     {% endblock %}
-    {% include 'nav.html' with index=True %}
+    {% include 'includes/nav.html' with index=True %}
     {% csrf_token %}
     <div class="single-card" data-id={{ recipe.id }} data-author={{ recipe.author.id }}>
 
@@ -27,7 +27,7 @@
                 {% endif %}
             </div>
             <ul class="single-card__items">
-                {% include 'tags.html' %}
+                {% include 'includes/tags.html' %}
             </ul>
             <div class="single-card__items single-card__items_column">
                 <p class="single-card__text"><span class="icon-time"></span> {{ recipe.prep_time }} мин.</p>

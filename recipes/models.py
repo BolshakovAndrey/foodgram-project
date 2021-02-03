@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from .validators import image_size_validator
@@ -15,10 +16,15 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'checkbox_style'],
+                name='unique_tag'
+            )]
 
     name = models.CharField(
         verbose_name='Название тега',
-        max_length=10,
+        max_length=50,
     )
     slug = models.SlugField(
         verbose_name='Слаг тэга',
@@ -27,7 +33,7 @@ class Tag(models.Model):
     )
     checkbox_style = models.CharField(
         verbose_name='цвет тега',
-        max_length=15
+        max_length=20
     )
 
     def __str__(self):
@@ -58,6 +64,19 @@ class Ingredient(models.Model):
         return self.name
 
 
+class RecipeManager(models.Manager):
+    """
+    The manager implements filtering by tags
+    """
+
+    def filter_by_tags(self, tag):
+        if tag:
+            queryset = Recipe.objects.filter(tag__name__in=tag.split(',')).distinct()
+        else:
+            queryset = Recipe.objects.all()
+        return queryset
+
+
 class Recipe(models.Model):
     """
     model Recipe
@@ -82,7 +101,9 @@ class Recipe(models.Model):
     image = models.ImageField(
         verbose_name='Изображение',
         upload_to='recipes/',
+        default='static/images/testCardImg.png',
         validators=[image_size_validator]
+
     )
     description = models.TextField(
         verbose_name='Описание рецепта',
@@ -92,7 +113,9 @@ class Recipe(models.Model):
     cook_time = models.PositiveSmallIntegerField(
         verbose_name='Время приготовления',
         help_text='в минутах',
-        null=True
+        null=True,
+        validators=[MinValueValidator(1.0)]
+
     )
     slug = models.SlugField(
         verbose_name='Слаг',
@@ -103,7 +126,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         verbose_name='Ингредиенты',
-        related_name="recipe_ingredients",
+        related_name='recipe_ingredients',
         through='Amount',
         through_fields=('recipe', 'ingredient')
     )
@@ -117,6 +140,8 @@ class Recipe(models.Model):
         verbose_name='Тэг',
         related_name='recipe_tags'
     )
+
+    recipes = RecipeManager()
 
     def __str__(self):
         return self.name

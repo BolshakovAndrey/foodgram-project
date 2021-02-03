@@ -2,11 +2,11 @@
 {% block title %}Рецепты{% endblock %}
 {% block content %}
     {% load static recipes_util user_filters %}
-    {% include 'nav.html' with index=True %}
+    {% include 'includes/nav.html' with index=True %}
     <link rel="stylesheet" href="{% static 'pages/index.css' %}">
     <div class="main__header">
         <h1 class="main__title">Рецепты</h1>
-        {% include 'tags_filter.html' %}
+        {% include 'includes/tags_filter.html' %}
     </div>
     <div class="card-list">
         {% for recipe in object_list %}
@@ -18,7 +18,7 @@
                 <div class="card__body">
                     <a class="card__title link" href="{% url 'recipe' recipe.id %}" target="_self">{{ recipe.name }}</a>
                     <ul class="card__items">
-                        {% include 'tags.html' %}
+                        {% include 'includes/tags.html' %}
                     </ul>
                     <div class="card__items card__items_column">
                         <p class="card__text"><span class="icon-time"></span>{{ recipe.cook_time }} мин.</p>
@@ -48,7 +48,7 @@
             </div>
         {% endfor %}
     </div>
-    {% include 'paginator.html' %}
+    {% include 'includes/paginator.html' %}
     <script src="{% static 'js/config/config.js' %}"></script>
     <script src="{% static 'js/components/MainCards.js' %}"></script>
     <script src="{% static 'js/components/Favorites.js' %}"></script>

@@ -2,12 +2,12 @@
 {% block title %}{{ author.get_full_name }}{% endblock %}
 {% block content %}
     {% load static recipes_util %}
-    {% include 'nav.html' with index=True %}
+    {% include 'includes/nav.html' with index=True %}
     {% csrf_token %}
     <link rel="stylesheet" href="{% static 'pages/index.css' %}">
     <div class="main__header">
         <h1 class="main__title">{{ author.get_full_name }}</h1>
-        {% include 'tags_filter.html' %}
+        {% include 'includes/tags_filter.html' %}
     </div>
     {% if request.user.is_authenticated %}
         {% if request.user != author %}
@@ -29,7 +29,7 @@
                 <div class="card__body">
                     <a class="card__title link" href="{% url 'recipe' recipe.pk %}" target="_self">{{ recipe.name }}</a>
                     <ul class="card__items">
-                        {% include 'tags.html' %}
+                        {% include 'includes/tags.html' %}
                     </ul>
                     <div class="card__items card__items_column">
                         <p class="card__text"><span class="icon-time"></span>{{ recipe.cook_time }} мин.</p>
