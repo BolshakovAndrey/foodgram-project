@@ -157,7 +157,7 @@ class AuthorRecipeListView(RecipeListView):
 
     def get_queryset(self):
         current_user = get_object_or_404(User, pk=self.kwargs.get('pk'))
-        queryset = Recipe.objects.filter(author=current_user)
+        queryset = Recipe.recipes.filter(author=current_user)
 
         return get_filters(self.request, queryset)
 
@@ -195,7 +195,7 @@ class FollowListView(ListView):
         context['authors'] = authors
         favorite_recipes = {}
         for author in authors:
-            favorite_recipes[author] = Recipe.objects.filter(
+            favorite_recipes[author] = Recipe.recipes.filter(
                 author=author
             ).order_by('-pub_date')[:3]
         context['favorite_recipes'] = favorite_recipes
