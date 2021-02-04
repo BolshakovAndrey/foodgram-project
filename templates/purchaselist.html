@@ -25,6 +25,8 @@
             <a class="button button_style_light-blue" href="{% url 'purchaselist_download' %}">Скачать список</a>
         {% endif %}
     </div>
+    {% include 'includes/paginator.html' %}
+    {% include 'includes/footer.html' %}
     <script src="{% static 'js/config/config.js' %}"></script>
     <script src="{% static 'js/components/Header.js' %}"></script>
     <script src="{% static 'js/components/ShopList.js' %}"></script>

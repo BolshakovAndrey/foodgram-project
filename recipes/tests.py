@@ -25,12 +25,6 @@ def _create_recipe(author, name, tag):
     return recipe
 
 
-# def _create_subscribe(subscriber):
-#     subscribe_id = '1'
-#     subscriber = get_object_or_404(User, id=subscribe_id)
-#     subscribe = Follow.objects.get_or_create(author=subscriber)
-#     subscribe.followers
-
 class UserFactory(factory.Factory):
     """
     Описываем класс для создания пользователей через библиотеку Factory Boy
@@ -313,6 +307,3 @@ class TestFollowPage(TestCase):
         self.assertIn(
             'Test user first_name', response.content.decode(),
             msg='На странице подписок должен быть добавленный автор')
-
-
-

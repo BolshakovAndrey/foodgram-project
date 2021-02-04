@@ -36,7 +36,6 @@ class RecipeListView(ListView):
         return context
 
 
-
 class RecipeCreateView(LoginRequiredMixin, CreateView):
     """
         Adds a new recipe.
@@ -211,12 +210,12 @@ class PurchaseList(ListView):
 
 
 def purchaselist_download(request):
-    recipes = Recipe.objects.filter(selected_recipes__user=request.user)
+    recipes = Recipe.recipes.filter(selected_recipes__user=request.user)
     ingredients = recipes.annotate(
-        title=F('amount__ingredient__name'),
-        units=F('amount__ingredient__unit')
-    ).values('title', 'units').order_by('title').annotate(
-        total=Sum('amount__units')
+        title=F('ingredients__name'),
+        units=F('ingredients__unit')
+    ).values('title', 'ingredients__unit').order_by('title').annotate(
+        total=Sum('ingredients__units')
     )
     response = HttpResponse(content_type='text/text')
     response['Content-Disposition'] = 'attachment; filename="purchaselist.txt"'

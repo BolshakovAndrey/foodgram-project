@@ -114,7 +114,7 @@ class Recipe(models.Model):
         verbose_name='Время приготовления',
         help_text='в минутах',
         null=True,
-        validators=[MinValueValidator(1.0)]
+        validators=[MinValueValidator(1)]
 
     )
     slug = models.SlugField(
@@ -176,7 +176,7 @@ class Amount(models.Model):
         Ingredient,
         verbose_name='Ингредиент',
         on_delete=models.CASCADE,
-        related_name='amount_ingredients'
+        related_name='ingredients'
     )
     units = models.PositiveIntegerField(
         verbose_name='Количество/объем',
