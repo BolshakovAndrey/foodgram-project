@@ -60,8 +60,8 @@
             <div class="single-card__section">
                 <h3 class="single-card__section-title">Ингредиенты:</h3>
                 <div class="single-card__items single-card__items_column">
-                    {% for amount in recipe.amount_set.all %}
-                        <p class=" single-card__section-item">{{ amount.ingredient.name }} - {{ amount.units}} {{ amount.ingredient.unit }}</p>
+                    {% for object in object.amount_recipes.all %}
+                        <p class=" single-card__section-item">{{ object.ingredient.name }} - {{ object.units}} {{ object.ingredient.unit }}</p>
                     {% endfor %}
                 </div>
             </div>

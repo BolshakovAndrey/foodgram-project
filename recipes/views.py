@@ -10,7 +10,8 @@ from django.views import View
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe, User
+from recipes.models import Favorite, Follow, Ingredient,\
+    Purchase, Recipe, User, Amount
 
 from .forms import RecipeForm
 from .util import create_ingredients_amounts, get_all_tags, get_filters
@@ -85,7 +86,7 @@ class RecipeUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         instance = form.save(commit=False)
         form_data = form.data
-        instance.amount_set.all().delete()
+        instance.amount_recipes.all().delete()
         ingredients = [
             key for key in form_data if key.startswith('nameIngredient_')
         ]
@@ -215,7 +216,7 @@ def purchaselist_download(request):
         title=F('ingredients__name'),
         units=F('ingredients__unit')
     ).values('title', 'ingredients__unit').order_by('title').annotate(
-        total=Sum('ingredients__units')
+        total=Sum('amount_recipes__units')
     )
     response = HttpResponse(content_type='text/text')
     response['Content-Disposition'] = 'attachment; filename="purchaselist.txt"'
@@ -231,7 +232,7 @@ def purchaselist_download(request):
     for ingredient in ingredients:
         if ingredient['title']:
             name = ingredient['title']
-            dimension = ingredient['units']
+            dimension = ingredient['ingredients__unit']
             total = ingredient['total']
             writer.writerow([f'{name} - {total} {dimension}'])
 
