@@ -27,9 +27,11 @@ urlpatterns = [
          PurchasesView.as_view(), name='add-purchases'),
     path('purchases/<int:recipe_id>/',
          PurchasesView.as_view(), name='remove_purchases'),
-    path('shoplist/download/', purchaselist_download, name='purchaselist_download'),
+    path('shoplist/download/',
+         purchaselist_download, name='purchaselist_download'),
     # subscriptions
     path('subscriptionslist/', FollowListView.as_view(), name='subscriptions'),
     path('subscriptions/', SubscribeView.as_view(), name='add_subscription'),
-    path('subscriptions/<int:author_id>/', SubscribeView.as_view(), name='remove_subscriptions')
+    path('subscriptions/<int:author_id>/',
+         SubscribeView.as_view(), name='remove_subscriptions')
 ]
