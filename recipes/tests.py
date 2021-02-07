@@ -1,7 +1,6 @@
 import factory
 from django.test import Client, TestCase
 from django.urls import reverse
-from django.contrib.auth import logout
 
 from recipes.models import (Amount, Favorite, Follow, Ingredient, Recipe, Tag,
                             User)
@@ -257,7 +256,8 @@ class TestTagFilter(TestCase):
         self.client.force_login(self.user)
         tag1 = Tag.objects.create(name='завтрак', slug='breakfast',
                                   checkbox_style='orange')
-        tag2 = Tag.objects.create(name='обед', slug='lunch', checkbox_style='green')
+        tag2 = Tag.objects.create(name='обед', slug='lunch',
+                                  checkbox_style='green')
         for i in range(15):
             if i % 2 == 0:
                 _create_recipe(self.user, f'recipe {i}', tag2)
@@ -409,7 +409,7 @@ class TestFavoriteButton(TestCase):
                          msg='При добавлении в избранное success = True')
         self.assertTrue(Favorite.favorite.get(
             user=self.user, recipe=self.recipe.id),
-                        msg='Должна создаваться соответствующая запись в бд')
+            msg='Должна создаваться соответствующая запись в бд')
 
         repeat_response = self.client.post(
             reverse('add_favorite'), data=self.data,
@@ -417,8 +417,8 @@ class TestFavoriteButton(TestCase):
         data_incoming_2 = repeat_response.json()
         self.assertEqual(
             data_incoming_2['success'], False,
-            msg='При попытке повторно добавить в избранное success = False')
-
+            msg='При попытке повторно добавить '
+                'в избранное success = False')
 
     def test_auth_user_delete(self):
         self.client.force_login(self.user)
@@ -435,8 +435,6 @@ class TestFavoriteButton(TestCase):
                       msg='Словарь должен содержать ключ "success"')
         self.assertEqual(data_incoming['success'], True,
                          msg='При удалении из избранного success = True')
-        self.assertFalse(Favorite.favorite.filter(recipe=self.recipe,
-                                                 user=self.user)
-                         .exists(),
+        self.assertFalse(Favorite.favorite.filter(
+            recipe=self.recipe, user=self.user).exists(),
                          msg='Должна удаляться соответствующая запись в бд')
-

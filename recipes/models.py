@@ -12,6 +12,7 @@ class Tag(models.Model):
     """
     model Tags
     """
+
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
@@ -70,7 +71,9 @@ class RecipeManager(models.Manager):
 
     def filter_by_tags(self, tag):
         if tag:
-            queryset = Recipe.objects.filter(tag__name__in=tag.split(',')).distinct()
+            queryset = Recipe.objects.filter(
+                tag__name__in=tag.split(
+                    ',')).distinct()
         else:
             queryset = Recipe.objects.all()
         return queryset
@@ -144,7 +147,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
-
 
     @property
     def image_url(self):
@@ -256,7 +258,8 @@ class FavoriteManager(models.Manager):
         """
 
         try:
-            return super().get_queryset().get(user=user).recipes.all()
+            return super().get_queryset().get(
+                user=user).recipes.all()
         except ObjectDoesNotExist:
             return []
 

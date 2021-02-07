@@ -10,8 +10,8 @@ from django.views import View
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from recipes.models import Favorite, Follow, Ingredient,\
-    Purchase, Recipe, User, Amount
+from recipes.models import Favorite, Follow, Ingredient, \
+    Purchase, Recipe, User
 
 from .forms import RecipeForm
 from .util import create_ingredients_amounts, get_all_tags, get_filters

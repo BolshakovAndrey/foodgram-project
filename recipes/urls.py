@@ -19,11 +19,14 @@ urlpatterns = [
     # favorites
     path('favoriteslist/', FavoriteListView.as_view(), name='favorites'),
     path('favorites/', FavoriteView.as_view(), name='add_favorite'),
-    path('favorites/<int:recipe_id>/', FavoriteView.as_view(), name='remove_favorites'),
+    path('favorites/<int:recipe_id>/',
+         FavoriteView.as_view(), name='remove_favorites'),
     # purchases
     path('purchaselist/', PurchaseList.as_view(), name='purchaselist'),
-    path('purchases/', PurchasesView.as_view(), name='add-purchases'),
-    path('purchases/<int:recipe_id>/', PurchasesView.as_view(), name='remove_purchases'),
+    path('purchases/',
+         PurchasesView.as_view(), name='add-purchases'),
+    path('purchases/<int:recipe_id>/',
+         PurchasesView.as_view(), name='remove_purchases'),
     path('shoplist/download/', purchaselist_download, name='purchaselist_download'),
     # subscriptions
     path('subscriptionslist/', FollowListView.as_view(), name='subscriptions'),
