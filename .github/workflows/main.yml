@@ -44,4 +44,4 @@ jobs:
           path: ./
           dockerfile: ./Dockerfile
           push: true
-          tags: mydockerid2505/foodgram:foodgram
+          tags: mydockerid2505/foodgram
