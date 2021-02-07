@@ -250,7 +250,7 @@ class FavoriteView(View):
         """
         recipe_id = json.loads(request.body).get('id')
         recipe = get_object_or_404(Recipe, id=recipe_id)
-        favorite, created = Favorite.objects.get_or_create(
+        favorite, created = Favorite.favorite.get_or_create(
             user=request.user, recipe=recipe
         )
         if created:
@@ -263,7 +263,7 @@ class FavoriteView(View):
         """
 
         recipe = get_object_or_404(Recipe, id=recipe_id)
-        removed = Favorite.objects.filter(
+        removed = Favorite.favorite.filter(
             user=request.user, recipe=recipe
         ).delete()
         if removed:

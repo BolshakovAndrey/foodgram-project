@@ -4,11 +4,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.flatpages import views
 from django.urls import include, path
-from django.views.generic import TemplateView
 
-handler404 = 'recipes.views.page_not_found' # noqa
-handler500 = 'recipes.views.server_error' # noqa
-handler403 = 'recipes.views.permission_denied' # noqa
+handler404 = 'recipes.views.page_not_found'  # noqa
+handler500 = 'recipes.views.server_error'  # noqa
+handler403 = 'recipes.views.permission_denied'  # noqa
 
 urlpatterns = [
     # admin section
@@ -16,13 +15,12 @@ urlpatterns = [
     # registration and authorization
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
-    # flatpages
-    # path('about/', include('django.contrib.flatpages.urls')),
     # apps
     path('', include('recipes.urls')),
 ]
 
 urlpatterns += [
+    # flatpages
     path("about/about-author/", views.flatpage,
          {"url": "/author/"}, name="about-author"),
     path("about/about-spec/", views.flatpage,
@@ -30,7 +28,6 @@ urlpatterns += [
     path("about/about-site/", views.flatpage,
          {"url": "/site/"}, name="about-site"),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

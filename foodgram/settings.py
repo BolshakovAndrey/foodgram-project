@@ -7,7 +7,7 @@ DEBUG = True
 
 if not DEBUG:
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
 
     DATABASES = {
         'default': {
@@ -22,7 +22,7 @@ if not DEBUG:
 
 else:
     SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -78,7 +78,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -117,14 +116,12 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = "/auth/login/"
-
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # specify the directory where the email files will be stored

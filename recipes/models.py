@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -12,7 +12,6 @@ class Tag(models.Model):
     """
     model Tags
     """
-
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
@@ -146,9 +145,6 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
 
-    @property
-    def ingredients_list(self):
-        return list(self.ingredients.all())
 
     @property
     def image_url(self):
@@ -250,6 +246,21 @@ class Follow(models.Model):
         return f'{self.user.name} подписался на {self.author.name}'
 
 
+class FavoriteManager(models.Manager):
+    """Менеджер модели избранное."""
+
+    def get_favorites(self, user):
+        """
+        Фукция возвращает QuerySet рецептов добавленных в избранное. Если таких
+        рецепров нет возвращает пустой лист.
+        """
+
+        try:
+            return super().get_queryset().get(user=user).recipes.all()
+        except ObjectDoesNotExist:
+            return []
+
+
 class Favorite(models.Model):
     """
     model favorite recipes
@@ -278,3 +289,5 @@ class Favorite(models.Model):
         related_name='favorite_recipes',
         verbose_name='Любимый рецепт'
     )
+
+    favorite = FavoriteManager()

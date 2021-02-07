@@ -5,6 +5,9 @@ from recipes.models import Recipe, Tag
 
 
 class RecipeForm(forms.ModelForm):
+    """
+    Recipe Form
+    """
     class Meta:
         model = Recipe
         fields = (
@@ -14,6 +17,9 @@ class RecipeForm(forms.ModelForm):
 
 
 class TagsFilter(forms.Form):
+    """
+    Tags Form
+    """
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.all(),
         widget=CheckboxSelectMultiple(),

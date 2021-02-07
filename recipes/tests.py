@@ -1,6 +1,7 @@
 import factory
 from django.test import Client, TestCase
 from django.urls import reverse
+from django.contrib.auth import logout
 
 from recipes.models import (Amount, Favorite, Follow, Ingredient, Recipe, Tag,
                             User)
@@ -35,7 +36,7 @@ class UserFactory(factory.Factory):
 
     username = 'Test user'
     email = 'test@test.test'
-    password = '12345six'
+    password = '12345Test'
     first_name = 'Test user first_name'
 
 
@@ -43,6 +44,14 @@ def _create_user(**kwargs):
     user = UserFactory.create(**kwargs)
     user.save()
     return user
+
+
+def _create_unauth_user(**kwargs):
+    unauth_user = UserFactory.create(**kwargs).logout()
+    unauth_user.save()
+    return unauth_user
+
+    return unauth_user
 
 
 class TestPageHeader(TestCase):
@@ -112,7 +121,7 @@ class TestAuthorPage(TestCase):
         self.user = _create_user()
         self.user2 = _create_user(username='Another test user',
                                   email='another@test.test',
-                                  password='onetwo34',
+                                  password='12345Another',
                                   first_name='Another test user first_name')
 
     def test_not_auth_user(self):
@@ -165,7 +174,7 @@ class TestRecipePage(TestCase):
         self.user = _create_user()
         self.user2 = _create_user(username='Another test user',
                                   email='another@test.test',
-                                  password='onetwo34',
+                                  password='12345Another',
                                   first_name='Another test user first_name')
         tag = Tag.objects.create(name='завтрак', slug='breakfast')
         self.recipe = _create_recipe(self.user, 'Test recipe', tag)
@@ -292,7 +301,7 @@ class TestFollowPage(TestCase):
         self.user = _create_user()
         self.user2 = _create_user(username='Another test user',
                                   email='another@test.test',
-                                  password='onetwo34',
+                                  password='12345Another',
                                   first_name='Another test user first_name')
         tag = Tag.objects.create(name='завтрак', slug='breakfast')
         self.recipe = _create_recipe(self.user, 'Test recipe', tag)
@@ -307,3 +316,127 @@ class TestFollowPage(TestCase):
         self.assertIn(
             'Test user first_name', response.content.decode(),
             msg='На странице подписок должен быть добавленный автор')
+
+
+class TestFollowButton(TestCase):
+    """
+    Тесты страницы подписки.
+    Для авторизованного пользователя проверяется, что страница доступна и что
+    добавление и удаление подписки на автора происходит корректно.
+    """
+
+    def setUp(self):
+        self.client = Client()
+        self.user = _create_user()
+        self.user2 = _create_user(username='Another test user',
+                                  email='another@test.test',
+                                  password='12345Another',
+                                  first_name='Another test user first_name')
+
+        self.data = {'id': f'{self.user2.id}'}
+
+    def test_auth_user_add(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse('add_subscription'), data=self.data,
+            content_type='application/json', follow=True)
+        data_incoming = response.json()
+        self.assertIsInstance(data_incoming, dict,
+                              msg='Проверьте, что на запрос приходит словарь')
+        self.assertIn('success', data_incoming,
+                      msg='Проверьте, что словарь содержит ключ "success"')
+        self.assertEqual(data_incoming['success'], True,
+                         msg='При добавлении в подписки значение ключа = True')
+        self.assertTrue(Follow.objects.filter(
+            user=self.user, author=self.user2).exists(),
+                        msg='Должна создаваться соответствующая запись в бд')
+        repeat_response = self.client.post(
+            reverse('add_subscription'), data=self.data,
+            content_type='application/json', follow=True)
+        data_incoming_2 = repeat_response.json()
+        self.assertEqual(
+            data_incoming_2['success'], False,
+            msg='При попытке повторно добавить в подписки success = False')
+        self.assertEqual(Follow.objects.filter(
+            user=self.user, author=self.user2).count(), 1,
+                         msg='Не должна создаваться повторная запись в бд')
+
+    def test_auth_user_delete(self):
+        self.client.force_login(self.user)
+        self.client.post(
+            reverse('subscriptions'), data=self.data,
+            content_type='application/json', follow=True)
+        del_response = self.client.delete(
+            reverse('remove_subscriptions', args=[self.user2.id]),
+            content_type='application/json', follow=True)
+        data_incoming = del_response.json()
+        self.assertIsInstance(data_incoming, dict,
+                              msg='На запрос должен приходить словарь')
+        self.assertIn('success', data_incoming,
+                      msg='Словарь должен содержать ключ "success"')
+        self.assertEqual(data_incoming['success'], True,
+                         msg='При удалении из подписок значение ключа = True')
+        self.assertFalse(Follow.objects.filter(
+            user=self.user, author=self.user2).exists(),
+                         msg='Должна удаляться соответствующая запись в бд')
+
+
+class TestFavoriteButton(TestCase):
+    """
+    Тесты страницы избранное.
+    Для авторизованного пользователя проверяется, что страница доступна и что
+    добавление и удаление рецепта происходит корректно.
+    """
+
+    def setUp(self):
+        self.client = Client()
+        self.user = _create_user()
+        tag = Tag.objects.create(name='завтрак', slug='breakfast')
+        self.recipe = _create_recipe(self.user, 'Cool recipe', tag)
+        self.data = {'id': f'{self.recipe.id}'}
+
+    def test_auth_user_add(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse('add_favorite'), data=self.data,
+            content_type='application/json', follow=True)
+        data_incoming = response.json()
+        self.assertIsInstance(data_incoming, dict,
+                              msg='На запрос должен приходить словарь')
+        self.assertIn('success', data_incoming,
+                      msg='Словарь должен содержать ключ "success"')
+        self.assertEqual(data_incoming['success'], True,
+                         msg='При добавлении в избранное success = True')
+        self.assertTrue(Favorite.favorite.get(
+            user=self.user, recipe=self.recipe.id),
+                        msg='Должна создаваться соответствующая запись в бд')
+
+        repeat_response = self.client.post(
+            reverse('add_favorite'), data=self.data,
+            content_type='application/json', follow=True)
+        data_incoming_2 = repeat_response.json()
+        self.assertEqual(
+            data_incoming_2['success'], False,
+            msg='При попытке повторно добавить в избранное success = False')
+
+
+    def test_auth_user_delete(self):
+        self.client.force_login(self.user)
+        self.client.post(
+            reverse('favorites'), data=self.data,
+            content_type='application/json', follow=True)
+        del_response = self.client.delete(
+            reverse('remove_favorites', args=[self.recipe.id]),
+            content_type='application/json', follow=True)
+        data_incoming = del_response.json()
+        self.assertIsInstance(data_incoming, dict,
+                              msg='На запрос должен приходить словарь')
+        self.assertIn('success', data_incoming,
+                      msg='Словарь должен содержать ключ "success"')
+        self.assertEqual(data_incoming['success'], True,
+                         msg='При удалении из избранного success = True')
+        self.assertFalse(Favorite.favorite.filter(recipe=self.recipe,
+                                                 user=self.user)
+                         .exists(),
+                         msg='Должна удаляться соответствующая запись в бд')
+

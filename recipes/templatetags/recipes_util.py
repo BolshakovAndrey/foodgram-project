@@ -48,4 +48,4 @@ def is_following(author, user):
 
 @register.filter(name='is_favorite')
 def is_favorite(recipe, user):
-    return Favorite.objects.filter(user=user, recipe=recipe).exists()
+    return Favorite.favorite.filter(user=user, recipe=recipe).exists()

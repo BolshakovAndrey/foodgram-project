@@ -21,19 +21,21 @@ class RecipeAdmin(admin.ModelAdmin):
     filter_horizontal = ('tag', 'ingredients',)
     list_filter = ('author', 'name', 'tag',)
     list_display = (
-        'name', 'author', 'count_favorited'
+        'name', 'author', 'count_favorite'
     )
     ordering = ['name', ]
     autocomplete_fields = ('ingredients',)
-    readonly_fields = ('count_favorited',)
+    readonly_fields = ('count_favorite',)
     inlines = (IngredientQuantityInline,)
 
-    def count_favorited(self, obj):
+    def count_favorite(self, obj):
+        """
+        calculates the number of recipes in your favorites
+        """
         count = Favorite.objects.filter(recipe=obj).count()
-
         return count
 
-    count_favorited.short_description = 'Количество рецептов в избранном'
+    count_favorite.short_description = 'Количество рецептов в избранном'
 
 
 @admin.register(Tag)

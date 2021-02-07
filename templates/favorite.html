@@ -12,7 +12,7 @@
     <div class="card-list">
         {% for recipe in object_list %}
             <div class="card" data-id={{ recipe.id }}>
-                <a href="{% url 'recipe' recipe.pk %}" class="link" target="_self"><img src="{{ recipe.image.url }}" alt="Какой-то текст" class="card__image"></a>
+                <a href="{% url 'recipe' recipe.pk %}" class="link" target="_self"><img src="{{ recipe.image.url }}" alt="" class="card__image"></a>
                 <div class="card__body">
                     <a class="card__title link" href="{% url 'recipe' recipe.pk %}" target="_self">{{ recipe.name }}</a>
                     <ul class="card__items">
