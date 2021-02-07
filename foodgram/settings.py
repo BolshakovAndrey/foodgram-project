@@ -1,8 +1,10 @@
+import environ
 import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
+environ.Env.read_env()
 DEBUG = True
 
 if not DEBUG:
@@ -11,12 +13,13 @@ if not DEBUG:
 
     DATABASES = {
         'default': {
-            'ENGINE': os.environ.get('DB_ENGINE'),
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT'),
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('SQL_DATABASE'),
+            'USER': os.environ.get('SQL_USER', 'user'),
+            'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
+            'HOST': os.environ.get('SQL_HOST', 'localhost'),
+            'PORT': os.environ.get('SQL_PORT', '5432'),
+            'SECRET_KEY': os.getenv('SECRET_KEY'),
         }
     }
 

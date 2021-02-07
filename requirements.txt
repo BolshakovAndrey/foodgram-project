@@ -4,7 +4,9 @@ attrs==20.3.0
 coverage==5.4
 Django==3.1.6
 django-debug-toolbar==3.2
+django-environ==0.4.5
 djangorestframework==3.12.2
+environ==1.0
 factory-boy==3.2.0
 Faker==5.8.0
 iniconfig==1.1.1
