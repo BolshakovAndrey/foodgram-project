@@ -20,8 +20,6 @@ COPY ./requirements.txt .
 EXPOSE 5000
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
-FROM python:3.8-alpine
-
 RUN mkdir -p /home/app
 RUN addgroup -S app && adduser -S app -G app
 
