@@ -30,7 +30,6 @@ RUN mkdir $APP_HOME && mkdir $APP_HOME/static \
 WORKDIR $APP_HOME
 
 RUN apk update && apk add libpq sudo jpeg-dev zlib-dev libjpeg
-COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN chown -R app:app $APP_HOME && chown -R app:app $HOME
 RUN sudo -H pip install --upgrade pip \
