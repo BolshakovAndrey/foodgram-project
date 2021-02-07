@@ -24,7 +24,7 @@ jobs:
 
       - name: Lint with flake8
           pip install flake8
-          run: flake8 .--exclude=./recipes/migrations/*,./foodgram/settings.py
+          run: flake8 . --exclude=./recipes/migrations/*,./foodgram/settings.py
 
       - name: Test with UnitTest
           run: python manage.py  test
