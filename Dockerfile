@@ -1,3 +1,4 @@
+# BUILDER
 FROM python:3.8-alpine as builder
 LABEL stage=builder
 
@@ -17,8 +18,10 @@ RUN pip install --upgrade pip
 
 COPY . /usr/src/app/
 COPY ./requirements.txt .
-EXPOSE 5000
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+# FINAL
+FROM python:3.8-alpine
 
 RUN mkdir -p /home/app
 RUN addgroup -S app && adduser -S app -G app
@@ -30,6 +33,7 @@ RUN mkdir $APP_HOME && mkdir $APP_HOME/static \
 WORKDIR $APP_HOME
 
 RUN apk update && apk add libpq sudo jpeg-dev zlib-dev libjpeg
+COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN chown -R app:app $APP_HOME && chown -R app:app $HOME
 RUN sudo -H pip install --upgrade pip \
