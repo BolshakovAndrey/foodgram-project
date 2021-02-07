@@ -41,3 +41,19 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           tag_with_ref: true
           repository: mydockerid2505/foodgram
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: push_to_docker_hub
+    steps:
+      - name: executing remote ssh commands to deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            cd projects/foodgram/
+            sudo docker pull mydockerid2505/foodgram
+            sudo docker-compose up -d --no-deps web
