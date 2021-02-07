@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     container_name: foodgram-web
-    image: mydockerid2505/foodgram:latest
+    image: mydockerid2505/foodgram:final
     command: gunicorn foodgram.wsgi --bind 0:8000
     volumes:
       - static_volume:/home/app/web/static

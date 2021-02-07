@@ -6,7 +6,7 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-final
 
     steps:
       - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
 
   push_to_docker_hub:
     name: Push images to the Docker Hub
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-final
     needs: tests
     steps:
       - name: Check out the repo
@@ -49,7 +49,7 @@ jobs:
           tag_with_ref: true
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-final
     needs: push_to_docker_hub
     steps:
       - name: executing remote ssh commands to deploy
