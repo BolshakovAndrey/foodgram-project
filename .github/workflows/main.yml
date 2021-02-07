@@ -42,11 +42,11 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           path: ./
-            dockerfile: ./Dockerfile
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-            repository: evgfitil/foodgram
-            tag_with_ref: true
+          dockerfile: ./Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: evgfitil/foodgram
+          tag_with_ref: true
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,4 +63,3 @@ jobs:
             cd projects/foodgram/
             sudo docker pull mydockerid2505/foodgram
             sudo docker-compose up -d --no-deps web
-#            sudo docker stop $(sudo docker ps -a -q)
