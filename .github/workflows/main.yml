@@ -25,4 +25,4 @@ jobs:
         run: flake8 . --exclude=./recipes/migrations/*,./foodgram/settings.py
 
       - name: Test with pytest
-          run: pytest tests.py
+          run: python manage.py pytest tests.py
