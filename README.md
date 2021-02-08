@@ -1,12 +1,12 @@
 # foodgram-project
 
-![example workflow name](https://github.com/BolshakovAndrey/foodgram-project/workflows/Foodgram-CI/badge.svg)
+![Foodgram_workflow](https://github.com/BolshakovAndrey/foodgram-project/workflows/Foodgram_workflow/badge.svg)sdd
 
 ***Foodgram*** - сайт рецептов - продуктовый помощник, позволяющий просматривать и создавать рецепты,
 добавлять их в избранное, подписываться на авторов рецептов, формировать список покупок
 с ингредиентами для приготовления понравившихся блюд.
 
-Демо сайт доступен по этой ссылке https:130.193.57.127
+Демо сайт доступен по этой ссылке https://130.193.57.127
 
 ### Запуск проекта с использованием Docker
 
