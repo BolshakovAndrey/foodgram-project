@@ -58,4 +58,5 @@ jobs:
           script:
             cd projects/foodgram/
             sudo docker pull mydockerid2505/foodgram
-            sudo docker-compose up -d --no-deps web
+#            sudo docker-compose up -d --no-deps web
+            sudo docker-compose up -d
