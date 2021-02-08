@@ -55,8 +55,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "./foodgram/.env, nginx/default.conf, ./docker-compose.yaml"
-          target: "/usr/src/app/"
           script:
             cd projects/foodgram/
             sudo docker pull mydockerid2505/foodgram
