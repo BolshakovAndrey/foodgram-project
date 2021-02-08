@@ -1,19 +1,17 @@
-import environ
 import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
-environ.Env.read_env()
+SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
+
 DEBUG = False
 
 if not DEBUG:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    ALLOWED_HOSTS = [
-        'localhost', '127.0.0.1',
-        '130.193.57.127', 'cook-kni.ga',
-        'www.cook-kni.ga'
-    ]
+    # SECRET_KEY = os.environ.get('SECRET_KEY')
+    ALLOWED_HOSTS = ['localhost',
+                     '130.193.57.127',
+                     'cook-kni.ga',
+                     'www.cook-kni.ga']
 
     DATABASES = {
         'default': {
@@ -28,7 +26,7 @@ if not DEBUG:
     }
 
 else:
-    SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
+    # SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
     DATABASES = {
         'default': {
@@ -85,7 +83,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -100,7 +97,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 LANGUAGE_CODE = 'ru'
 
