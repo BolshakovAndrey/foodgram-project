@@ -9,7 +9,11 @@ DEBUG = True
 
 if not DEBUG:
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+    ALLOWED_HOSTS = [
+        'localhost', '127.0.0.1',
+        '130.193.57.127', 'cook-kni.ga',
+        'www.cook-kni.ga'
+    ]
 
     DATABASES = {
         'default': {
