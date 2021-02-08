@@ -57,7 +57,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           source: './foodgram/.env, nginx/nginx.conf, nginx/Dockerfile, ./docker-compose.yaml'
-          target: '/home/app/web'
+          target: '/home/app'
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
