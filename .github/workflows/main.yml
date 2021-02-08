@@ -56,7 +56,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: './foodgram/.env, nginx/default.conf, ./docker-compose.yaml'
+          source: './foodgram/.env, nginx/nginx.conf, nginx/Dockerfile, ./docker-compose.yaml'
           target: '/home/app/web'
 
       - name: executing remote ssh commands to deploy
