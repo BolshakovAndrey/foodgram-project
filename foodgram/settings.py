@@ -5,12 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
 
 DEBUG = True
-ALLOWED_HOSTS = [
-    'localhost',
-    '130.193.57.127',
-    'cook-kni.ga',
-    'www.cook-kni.ga'
-    ]
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
@@ -24,7 +19,6 @@ DATABASES = {
     }
 }
 
-# Application definition
 INSTALLED_APPS = [
     'recipes',
     'users',
