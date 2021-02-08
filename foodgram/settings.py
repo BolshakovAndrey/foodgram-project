@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
-DEBUG = True
+DEBUG = False
 
 if not DEBUG:
     SECRET_KEY = os.environ.get('SECRET_KEY')
