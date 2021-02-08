@@ -1,39 +1,35 @@
-version: '3'
+version: '3.8'
+
+volumes:
+  postgres_data:
+  static_volume:
+
 services:
-  web:
-    container_name: foodgram-web
-    image: mydockerid2505/foodgram:final
-    command: gunicorn foodgram.wsgi --bind 0:8000
+
+  db:
+    image: postgres:13.0
+    restart: always
     volumes:
-      - static_volume:/home/app/web/static
-      - media_volume:/home/app/web/media
-    expose:
-      - 8000
+      - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./foodgram/.env
+      - ./.db.env
+  web:
+    image: mydockerid2505/foodgram:final
+    restart: always
+    volumes:
+      - ./static_volume:/code/static
     depends_on:
       - db
-  db:
-    container_name: foodgram-db
-    image: postgres:12.4-alpine
-    volumes:
-      - psql_data:/var/lib/postgresql/data
-    expose:
-      - 5432
     env_file:
-      - .db.env
+      - ./foodgram/.env
+
   nginx:
-    container_name: foodgram-nginx
-    build: ./nginx
+    image: nginx:latest
+    restart: always
     volumes:
-      - static_volume:/home/app/web/static
-      - media_volume:/home/app/web/media
+      - ./static_volume:/code/static
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
-      - 443:443
     depends_on:
       - web
-volumes:
-  psql_data:
-  static_volume:
-  media_volume:
