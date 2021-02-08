@@ -14,7 +14,8 @@ if not DEBUG:
 
     DATABASES = {
         'default': {
-            'ENGINE': os.environ.get('DB_ENGINE'),
+
+            'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.environ.get('SQL_DATABASE'),
             'USER': os.environ.get('SQL_USER', 'user'),
             'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
