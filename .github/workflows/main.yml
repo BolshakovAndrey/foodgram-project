@@ -53,7 +53,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "./foodgram/.env, nginx/nginx.conf, ./docker-compose.yaml"
+          source: "./foodgram/.env, ./.db.env, nginx/nginx.conf, ./docker-compose.yaml"
           target: "/home/yc-user/code"
 
 
