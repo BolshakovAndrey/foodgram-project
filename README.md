@@ -34,5 +34,5 @@
 
 5. Для получения актуальной версии образа проекта выполните:
 
-   `docker pull mydockerid2505/foodgram`
+   `docker pull mydockerid2505/foodgram:final`
   
