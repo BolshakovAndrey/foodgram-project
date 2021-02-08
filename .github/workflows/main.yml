@@ -67,6 +67,6 @@ jobs:
           script: |
             cd ~
             cd ./code
-            sudo docker-compose down
+            sudo docker rmi mydockerid2505/foodgram -f
             sudo docker pull mydockerid2505/foodgram:final
-            sudo docker-compose up -d
+            sudo docker-compose up --force-recreate -d web
