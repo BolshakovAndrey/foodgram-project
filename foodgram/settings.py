@@ -4,36 +4,25 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
 
-DEBUG = False
+DEBUG = True
+ALLOWED_HOSTS = [
+    'localhost',
+    '130.193.57.127',
+    'cook-kni.ga',
+    'www.cook-kni.ga'
+    ]
 
-if not DEBUG:
-    # SECRET_KEY = os.environ.get('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost',
-                     '130.193.57.127',
-                     'cook-kni.ga',
-                     'www.cook-kni.ga']
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('SQL_DATABASE'),
-            'USER': os.environ.get('SQL_USER', 'user'),
-            'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
-            'HOST': os.environ.get('SQL_HOST', 'localhost'),
-            'PORT': os.environ.get('SQL_PORT', '5432'),
-            'SECRET_KEY': os.getenv('SECRET_KEY'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('SQL_DATABASE'),
+        'USER': os.environ.get('SQL_USER', 'user'),
+        'PASSWORD': os.environ.get('SQL_PASSWORD', 'password'),
+        'HOST': os.environ.get('SQL_HOST', 'localhost'),
+        'PORT': os.environ.get('SQL_PORT', '5432'),
+        'SECRET_KEY': os.getenv('SECRET_KEY'),
     }
-
-else:
-    # SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 # Application definition
 INSTALLED_APPS = [
