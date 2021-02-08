@@ -44,5 +44,4 @@ COPY ./foodgram/.env $APP_HOME/foodgram/.env
 RUN chown -R app:app $APP_HOME
 
 USER app
-RUN ./manage.py collectstatic --no-input
 CMD gunicorn foodgram.wsgi:application --bind 0:8000
