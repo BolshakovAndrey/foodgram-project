@@ -10,7 +10,7 @@ else:
 
 if not DEBUG:
     SECRET_KEY = os.getenv('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '130.193.57.127']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
 
     DATABASES = {
         'default': {
@@ -25,7 +25,7 @@ if not DEBUG:
     }
 else:
     SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '130.193.57.127']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -124,7 +124,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 INTERNAL_IPS = [
     '*',
     '127.0.0.1',
-    '10.128.0.31'
+    '10.128.0.18'
 ]
 
 REST_FRAMEWORK = {
