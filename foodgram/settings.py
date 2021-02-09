@@ -1,7 +1,11 @@
 import os
 from pathlib import Path
 
+<<<<<<< HEAD
 BASE_DIR = Path(__file__).resolve().parent.parent
+=======
+BASE_DIR = Path(__file__).resolve().parent
+>>>>>>> 91e252d4fa057e0a2df8da6cd617782815299859
 
 if str(BASE_DIR) == '/code':
     DEBUG = False
@@ -25,6 +29,7 @@ if not DEBUG:
 else:
     SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
+    SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
