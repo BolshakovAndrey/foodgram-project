@@ -1,11 +1,7 @@
 import os
 from pathlib import Path
 
-<<<<<<< HEAD
 BASE_DIR = Path(__file__).resolve().parent.parent
-=======
-BASE_DIR = Path(__file__).resolve().parent
->>>>>>> 91e252d4fa057e0a2df8da6cd617782815299859
 
 if str(BASE_DIR) == '/code':
     DEBUG = False
