@@ -80,7 +80,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           passphrase: ${{ secrets.PASSPHRASE }}
-          source: "./.env, nginx/default.conf, ./docker-compose.yaml"
+          source: "./foodgram/.env, nginx/default.conf, ./docker-compose.yaml"
           target: "/home/yc-user/code"
 
 
