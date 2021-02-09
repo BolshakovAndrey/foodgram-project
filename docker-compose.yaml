@@ -13,7 +13,7 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
     env_file:
-      - ./.env
+      - foodgram/.env
   web:
     image: mydockerid2505/foodgram:final
     container_name: foodgram
@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env
+      - foodgram/.env
 
   nginx:
     image: nginx:latest

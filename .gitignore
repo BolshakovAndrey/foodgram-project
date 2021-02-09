@@ -81,7 +81,7 @@ __pypackages__/
 
 
 # Environments
-.env
+foodgram/.env
 .venv
 env/
 venv/
