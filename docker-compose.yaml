@@ -14,7 +14,7 @@ services:
     env_file:
       - ./.db.env
   web:
-    image: mydockerexitid2505/foodgram:final
+    image: mydockerid2505/foodgram:final
     restart: always
     volumes:
       - ./static_volume:/code/static
