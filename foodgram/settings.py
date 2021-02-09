@@ -1,5 +1,9 @@
 import os
 from pathlib import Path
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,7 +13,7 @@ else:
     DEBUG = True
 
 if not DEBUG:
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = env('SECRET_KEY')
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
 
     DATABASES = {
