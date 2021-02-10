@@ -135,4 +135,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 6
 }
 
-SITE_ID = 2
+SITE_ID = 1
+
+FIXTURE_DIRS = 'recipes/fixtures/'

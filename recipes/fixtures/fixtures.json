@@ -17623,5 +17623,1285 @@
     "user": 2,
     "recipe": 2
   }
+},
+{
+  "model": "sites.site",
+  "pk": 1,
+  "fields": {
+    "domain": "127.0.0.1:8000",
+    "name": "127.0.0.1:8000"
+  }
+},
+{
+  "model": "flatpages.flatpage",
+  "pk": 1,
+  "fields": {
+    "url": "/author/",
+    "title": "Об авторе",
+    "content": "Автор сайта - Андрей Большаков.<br>\r\nhttps://github.com/BolshakovAndrey/foodgram-project<br>\r\n\r\nСайт создан в рамках подготовки практического дипломного проекта по программе обучения \"Python web разработчик\", факультета \"Python-разработчик\" компании \"Яндекс-Практикум\".",
+    "enable_comments": false,
+    "template_name": "",
+    "registration_required": false,
+    "sites": [
+      1
+    ]
+  }
+},
+{
+  "model": "flatpages.flatpage",
+  "pk": 2,
+  "fields": {
+    "url": "/tech/",
+    "title": "Технологии",
+    "content": "При работе над проектом использован стек технологий: <br>\r\nDjango, <br>Python,<br> JavaScript, <br> PostgreSQL, <br>NGINX, <br>Gunicorn, <br>Docker, <br>Docker-Compose, <br>GitHub. <br>\r\nКод написан в IDE PyCharm, OS MAC OS Big Sur.<br>\r\nCD/CI реализован на GitHub Actions. <br>\r\nРазвернут на YandexCloud.",
+    "enable_comments": false,
+    "template_name": "",
+    "registration_required": false,
+    "sites": [
+      1
+    ]
+  }
+},
+{
+  "model": "flatpages.flatpage",
+  "pk": 3,
+  "fields": {
+    "url": "/site/",
+    "title": "О сайте",
+    "content": "Foodgram - это сервис для настоящих кулинаров и гурманов! Здесь вы можете:<br>\r\n\r\nПросматривать рецепты, созданные другими людьми.<br>\r\nСоздавать собственные рецепты.<br>\r\nПодписываться на любимых авторов.<br>\r\nДобавлять лучшие рецепты в избранное.<br>\r\nСоставлять свой список покупок ингредиентов для рецептов блюд, которые вы хотите приготовить.<br>\r\nУдобно фильтровать список рецептов по тэгам: завтрак, обед и ужин.<br>",
+    "enable_comments": false,
+    "template_name": "",
+    "registration_required": false,
+    "sites": [
+      1
+    ]
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-02-01T13:24:36.192Z",
+    "user": 2,
+    "content_type": 11,
+    "object_id": "2",
+    "object_repr": "admin",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-02-01T13:24:53.114Z",
+    "user": 2,
+    "content_type": 11,
+    "object_id": "1",
+    "object_repr": "test",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-02-01T13:26:40.608Z",
+    "user": 2,
+    "content_type": 3,
+    "object_id": "1",
+    "object_repr": "Завтрак",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-02-01T13:26:52.722Z",
+    "user": 2,
+    "content_type": 3,
+    "object_id": "2",
+    "object_repr": "Обед",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-02-01T13:27:06.711Z",
+    "user": 2,
+    "content_type": 3,
+    "object_id": "3",
+    "object_repr": "Ужин",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-02-01T14:01:09.517Z",
+    "user": 2,
+    "content_type": 5,
+    "object_id": "1",
+    "object_repr": "Мороженное со сливками",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-02-05T14:26:04.155Z",
+    "user": 2,
+    "content_type": 17,
+    "object_id": "1",
+    "object_repr": "127.0.0.1:8000",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Domain name\", \"Display name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-02-05T14:33:52.970Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/about-author/ -- Об авторе",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-02-05T14:34:36.121Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/author/ -- Об авторе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"URL\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-02-05T14:35:04.880Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/author/ -- Об авторе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2021-02-05T14:35:18.217Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/author/ -- Об авторе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2021-02-05T14:35:55.942Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/author/ -- Об авторе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2021-02-05T14:47:28.011Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/author/ -- Об авторе",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2021-02-05T15:05:25.049Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "1",
+    "object_repr": "/author/ -- Об авторе",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2021-02-05T15:16:04.223Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "/tech/ -- Технологии",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2021-02-05T15:16:32.686Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "/tech/ -- Технологии",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2021-02-05T15:18:46.636Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "/tech/ -- Технологии",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2021-02-05T15:20:40.888Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "/tech/ -- Технологии",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2021-02-05T15:21:13.811Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "/tech/ -- Технологии",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2021-02-05T15:21:56.690Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "2",
+    "object_repr": "/tech/ -- Технологии",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2021-02-05T15:23:16.822Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "3",
+    "object_repr": "/site/ -- О сайте",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2021-02-05T15:27:47.792Z",
+    "user": 2,
+    "content_type": 18,
+    "object_id": "3",
+    "object_repr": "/site/ -- О сайте",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Content\"]}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add Количество ингредиента",
+    "content_type": 1,
+    "codename": "add_amount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change Количество ингредиента",
+    "content_type": 1,
+    "codename": "change_amount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete Количество ингредиента",
+    "content_type": 1,
+    "codename": "delete_amount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view Количество ингредиента",
+    "content_type": 1,
+    "codename": "view_amount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add Ингредиент",
+    "content_type": 2,
+    "codename": "add_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change Ингредиент",
+    "content_type": 2,
+    "codename": "change_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete Ингредиент",
+    "content_type": 2,
+    "codename": "delete_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view Ингредиент",
+    "content_type": 2,
+    "codename": "view_ingredient"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add Тег",
+    "content_type": 3,
+    "codename": "add_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change Тег",
+    "content_type": 3,
+    "codename": "change_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete Тег",
+    "content_type": 3,
+    "codename": "delete_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view Тег",
+    "content_type": 3,
+    "codename": "view_tag"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add Рецепт",
+    "content_type": 4,
+    "codename": "add_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change Рецепт",
+    "content_type": 4,
+    "codename": "change_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete Рецепт",
+    "content_type": 4,
+    "codename": "delete_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view Рецепт",
+    "content_type": 4,
+    "codename": "view_recipe"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add Покупка",
+    "content_type": 5,
+    "codename": "add_purchase"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change Покупка",
+    "content_type": 5,
+    "codename": "change_purchase"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete Покупка",
+    "content_type": 5,
+    "codename": "delete_purchase"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view Покупка",
+    "content_type": 5,
+    "codename": "view_purchase"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add Подписка на автора",
+    "content_type": 6,
+    "codename": "add_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change Подписка на автора",
+    "content_type": 6,
+    "codename": "change_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete Подписка на автора",
+    "content_type": 6,
+    "codename": "delete_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view Подписка на автора",
+    "content_type": 6,
+    "codename": "view_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add Любимый рецепт",
+    "content_type": 7,
+    "codename": "add_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change Любимый рецепт",
+    "content_type": 7,
+    "codename": "change_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete Любимый рецепт",
+    "content_type": 7,
+    "codename": "delete_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view Любимый рецепт",
+    "content_type": 7,
+    "codename": "view_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 8,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 8,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 8,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 8,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 9,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 9,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 9,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 9,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 10,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 10,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 10,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 10,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 11,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 11,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 11,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 11,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 12,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 12,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 12,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 12,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 13,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 13,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 13,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 13,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add kv store",
+    "content_type": 14,
+    "codename": "add_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change kv store",
+    "content_type": 14,
+    "codename": "change_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete kv store",
+    "content_type": 14,
+    "codename": "delete_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view kv store",
+    "content_type": 14,
+    "codename": "view_kvstore"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add Подписка на автора",
+    "content_type": 15,
+    "codename": "add_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change Подписка на автора",
+    "content_type": 15,
+    "codename": "change_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete Подписка на автора",
+    "content_type": 15,
+    "codename": "delete_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view Подписка на автора",
+    "content_type": 15,
+    "codename": "view_follow"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add Любимый рецепт",
+    "content_type": 16,
+    "codename": "add_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change Любимый рецепт",
+    "content_type": 16,
+    "codename": "change_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete Любимый рецепт",
+    "content_type": 16,
+    "codename": "delete_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view Любимый рецепт",
+    "content_type": 16,
+    "codename": "view_favorite"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 17,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 17,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 17,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 17,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add flat page",
+    "content_type": 18,
+    "codename": "add_flatpage"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change flat page",
+    "content_type": 18,
+    "codename": "change_flatpage"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete flat page",
+    "content_type": 18,
+    "codename": "delete_flatpage"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view flat page",
+    "content_type": 18,
+    "codename": "view_flatpage"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$hy5fScdZYfq4$aRmQrgiBCezy71qRfUeaGUnAj1Ym96Bue3mdN8FpDrg=",
+    "last_login": "2021-02-01T14:11:56.693Z",
+    "is_superuser": false,
+    "username": "test",
+    "first_name": "Эдвард",
+    "last_name": "Ронин",
+    "email": "test@test.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-02-01T13:22:55Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$YNEZ9eJMrO4V$X5kkr2fILbSB3jX5fRE6X4kj52+KoeLEsqfemcjHWPg=",
+    "last_login": "2021-02-03T14:19:00.910Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "Федор",
+    "last_name": "Павлов",
+    "email": "admin@admin.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-02-01T13:23:32Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "recipes",
+    "model": "amount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "recipes",
+    "model": "ingredient"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "recipes",
+    "model": "tag"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "recipes",
+    "model": "recipe"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "recipes",
+    "model": "purchase"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "api",
+    "model": "follow"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "api",
+    "model": "favorite"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "thumbnail",
+    "model": "kvstore"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "recipes",
+    "model": "follow"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "recipes",
+    "model": "favorite"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "sites",
+    "model": "site"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "flatpages",
+    "model": "flatpage"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "36uxyxtnvqruimgsljciikhedvtbp0xh",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnZdTbGlPScwfJ-IAHkSPlUiLtDpBTQvpl5L5fLuvR5nW3Kg7qTQ3f43bjIw-oG9F7qbfQy1mUa2G-K3-nsL6Pa87y7fwd9mftvDUUAYsCkDJ2JpJYoELIF4iuBNF1SbZHR2ghJYsKgkYwakKNwVPf-ANXXN5w:1l7Izk:SN3BcxiYN56LLZKH8J6fhxsUTrt_-vnZKtrmYjoSMoM",
+    "expire_date": "2021-02-17T14:19:00.973Z"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||27db492f2b6804c44ef1cea7ca260c82",
+  "fields": {
+    "value": "{\"name\": \"cache/76/e4/76e4579a90998b48c6a4152b2838a476.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [360, 240]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||536b85bfd7f0ebd3e1e0f33605bccdd8",
+  "fields": {
+    "value": "{\"name\": \"cache/f8/5b/f85be2bbea6cda71bf9610d95d872cdb.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [360, 240]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||6938547e22735895a6371750d71f5670",
+  "fields": {
+    "value": "{\"name\": \"cache/31/b8/31b8374c28e354fb0f370d88b84aa9d5.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [360, 240]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||950a687242c97840069a04c742046cdd",
+  "fields": {
+    "value": "{\"name\": \"recipes/97c5498e2896.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [500, 333]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||b5d5e2fd2d01c1c340596ab065acc4d1",
+  "fields": {
+    "value": "{\"name\": \"recipes/s1200.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [320, 213]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||d47dd5f2cae289c81c9edc892894678a",
+  "fields": {
+    "value": "{\"name\": \"cache/d8/d8/d8d8997df7981bc6e5d0c01cedb54255.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [320, 240]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||e5d61a23914d6e131a3d125e59554804",
+  "fields": {
+    "value": "{\"name\": \"recipes/7cc5aa985e3c67f81787d79cb54719ad.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [328, 246]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||e916a91699bf04e753e6a82cfc5a4a1d",
+  "fields": {
+    "value": "{\"name\": \"cache/2b/e3/2be3538c465cdc286d388590cf51243b.jpg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [360, 240]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||f24f7e3e36e3d58ef315fec7a2448841",
+  "fields": {
+    "value": "{\"name\": \"recipes/s1200_MXFarh1.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [320, 213]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||image||f350eab4d2385f47e5f8f8c03994d76f",
+  "fields": {
+    "value": "{\"name\": \"recipes/s1200_EiPOhdi.jpeg\", \"storage\": \"django.core.files.storage.FileSystemStorage\", \"size\": [320, 213]}"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||950a687242c97840069a04c742046cdd",
+  "fields": {
+    "value": "[\"536b85bfd7f0ebd3e1e0f33605bccdd8\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||b5d5e2fd2d01c1c340596ab065acc4d1",
+  "fields": {
+    "value": "[\"27db492f2b6804c44ef1cea7ca260c82\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||e5d61a23914d6e131a3d125e59554804",
+  "fields": {
+    "value": "[\"d47dd5f2cae289c81c9edc892894678a\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||f24f7e3e36e3d58ef315fec7a2448841",
+  "fields": {
+    "value": "[\"6938547e22735895a6371750d71f5670\"]"
+  }
+},
+{
+  "model": "thumbnail.kvstore",
+  "pk": "sorl-thumbnail||thumbnails||f350eab4d2385f47e5f8f8c03994d76f",
+  "fields": {
+    "value": "[\"e916a91699bf04e753e6a82cfc5a4a1d\"]"
+  }
 }
 ]
