@@ -136,5 +136,3 @@ REST_FRAMEWORK = {
 }
 
 SITE_ID = 1
-
-FIXTURE_DIRS = 'recipes/fixtures/'

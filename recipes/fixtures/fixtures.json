@@ -18612,42 +18612,6 @@
   }
 },
 {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$216000$hy5fScdZYfq4$aRmQrgiBCezy71qRfUeaGUnAj1Ym96Bue3mdN8FpDrg=",
-    "last_login": "2021-02-01T14:11:56.693Z",
-    "is_superuser": false,
-    "username": "test",
-    "first_name": "Эдвард",
-    "last_name": "Ронин",
-    "email": "test@test.com",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2021-02-01T13:22:55Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$216000$YNEZ9eJMrO4V$X5kkr2fILbSB3jX5fRE6X4kj52+KoeLEsqfemcjHWPg=",
-    "last_login": "2021-02-03T14:19:00.910Z",
-    "is_superuser": true,
-    "username": "admin",
-    "first_name": "Федор",
-    "last_name": "Павлов",
-    "email": "admin@admin.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2021-02-01T13:23:32Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
   "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
