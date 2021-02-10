@@ -32,7 +32,7 @@ class RecipeAdmin(admin.ModelAdmin):
         """
         calculates the number of recipes in your favorites
         """
-        count = Favorite.objects.filter(recipe=obj).count()
+        count = Favorite.favorite.filter(recipe=obj).count()
         return count
 
     count_favorite.short_description = 'Количество рецептов в избранном'

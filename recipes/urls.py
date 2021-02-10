@@ -21,6 +21,11 @@ urlpatterns = [
     path('favorites/', FavoriteView.as_view(), name='add_favorite'),
     path('favorites/<int:recipe_id>/',
          FavoriteView.as_view(), name='remove_favorites'),
+    # subscriptions
+    path('subscriptionslist/', FollowListView.as_view(), name='subscriptions'),
+    path('subscriptions/', SubscribeView.as_view(), name='add_subscription'),
+    path('subscriptions/<int:author_id>/',
+         SubscribeView.as_view(), name='remove_subscriptions'),
     # purchases
     path('purchaselist/', PurchaseList.as_view(), name='purchaselist'),
     path('purchases/',
@@ -29,9 +34,4 @@ urlpatterns = [
          PurchasesView.as_view(), name='remove_purchases'),
     path('shoplist/download/',
          purchaselist_download, name='purchaselist_download'),
-    # subscriptions
-    path('subscriptionslist/', FollowListView.as_view(), name='subscriptions'),
-    path('subscriptions/', SubscribeView.as_view(), name='add_subscription'),
-    path('subscriptions/<int:author_id>/',
-         SubscribeView.as_view(), name='remove_subscriptions')
 ]

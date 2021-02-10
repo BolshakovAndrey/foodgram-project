@@ -1,6 +1,6 @@
 # foodgram-project
 
-![Foodgram_workflow](https://github.com/BolshakovAndrey/foodgram-project/workflows/Foodgram_workflow/badge.svg)sdd
+![Foodgram_workflow](https://github.com/BolshakovAndrey/foodgram-project/workflows/Foodgram_workflow/badge.svg)
 
 ***Foodgram*** - сайт рецептов - продуктовый помощник, позволяющий просматривать и создавать рецепты,
 добавлять их в избранное, подписываться на авторов рецептов, формировать список покупок

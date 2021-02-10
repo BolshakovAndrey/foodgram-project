@@ -1,6 +1,14 @@
 import os
 from pathlib import Path
+
 import environ
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://94710a104e1e4d6b9dc7b24abafc7307@o327774.ingest.sentry.io/5631623",
+    integrations=[DjangoIntegration()],
+)
 
 env = environ.Env()
 environ.Env.read_env()
