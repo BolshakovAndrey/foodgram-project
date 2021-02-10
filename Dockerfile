@@ -10,5 +10,4 @@ RUN pip install -r requirements.txt
  
 COPY . .
 
-RUN ./manage.py collectstatic --no-input
 CMD gunicorn foodgram.wsgi:application --bind 0.0.0.0:8000
