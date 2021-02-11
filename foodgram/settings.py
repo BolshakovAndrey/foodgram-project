@@ -15,38 +15,27 @@ environ.Env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-if str(BASE_DIR) == '/code':
-    DEBUG = False
-else:
-    DEBUG = True
+# if str(BASE_DIR) == '/code':
+#     DEBUG = False
+# else:
+DEBUG = True
 
-if not DEBUG:
-    SECRET_KEY = env('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
+# if not DEBUG:
+SECRET_KEY = env('SECRET_KEY')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
-else:
-    SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT'),
-        }
-    }
+}
+# else:
+
     # SECRET_KEY = '42+5=12ql#3057h%i@df_7u(_q03=uf5e)m#!4rxwci$8#4e4t'
     # ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
     # DATABASES = {
