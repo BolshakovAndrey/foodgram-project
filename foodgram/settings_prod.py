@@ -16,11 +16,11 @@ environ.Env.read_env()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 if str(BASE_DIR) == '/code':
-    DEBUG = True
+    DEBUG = False
 else:
     DEBUG = True
 
-if DEBUG:
+if not DEBUG:
     SECRET_KEY = env('SECRET_KEY')
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
 
