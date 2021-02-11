@@ -20,7 +20,12 @@ class Command(BaseCommand):
             for row in reader:
                 title, unit = row
                 Ingredient.objects.get_or_create(title=title, unit=unit)
-        Tag.objects.get_or_create(name='Завтрак', slug='breakfast',
-                                  colors='orange')
-        Tag.objects.get_or_create(name='Обед', slug='lunch', colors='green')
-        Tag.objects.get_or_create(name='Ужин', slug='dinner', colors='purple')
+        Tag.objects.get_or_create(name='Завтрак',
+                                  slug='breakfast',
+                                  checkbox_style='orange')
+        Tag.objects.get_or_create(name='Обед',
+                                  slug='lunch',
+                                  checkbox_style='green')
+        Tag.objects.get_or_create(name='Ужин',
+                                  slug='dinner',
+                                  checkbox_style='purple')
