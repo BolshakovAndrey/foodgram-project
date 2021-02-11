@@ -1,5 +1,4 @@
 [flake8]
-exclude = node_modules, migrations, sql, columns,
- ./recipes/tests.py, ./tests.py,
+exclude = node_modules, migrations, sql, columns,./recipes/tests.py, ./tests.py,
 # W503 line break before binary operator
 ignore = F821, W503, E501, F401, W391, W504
