@@ -35,12 +35,12 @@ NB! Пока не умеет загружать фикстуры.
 
 3. При первом запуске необходимо применить миграции:
 
-   `cd code`  затем `./manage.py migrate`
+   `cd code`  затем `python manage.py migrate`
 
 
 4. Для загрузки тестовых данных выполните:
 
-   `./manage.py loaddata dump.json`
+   `python manage.py load_product_data`
    
 
 5. Создайте пользователя с правами администратора:
