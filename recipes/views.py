@@ -56,6 +56,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         ingredients = [
             key for key in form_data if key.startswith('nameIngredient_')
         ]
+
         if not ingredients:
             form.add_error(
                 'description',

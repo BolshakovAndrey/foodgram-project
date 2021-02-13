@@ -1,4 +1,4 @@
-{% extends "base.html" %} djdt
+{% extends "base.html" %}
 {% block title %}{{ recipe.name }}{% endblock %}
 {% block content %}
     {% load static recipes_util %}
@@ -37,9 +37,10 @@
                             href="{% url 'author' recipe.author.pk %}"
                             style="color: black"> {{ recipe.author.get_full_name }}</a></p></li>
                     {% if request.user == recipe.author %}
-                        <li class="single-card__item"> <p class="single-card__text" > <a style="margin-left: 2.5em"
-                                                         href="{% url 'edit_recipe' recipe.id %}"
-                                                         class="single-card__text">Редактировать рецепт</a></p></li>
+                        <li class="single-card__item"><p class="single-card__text"><a
+                                style="margin-left: 2.5em"
+                                href="{% url 'edit_recipe' recipe.id %}"
+                                class="single-card__text">Редактировать рецепт</a></p></li>
                     {% endif %}
                 </ul>
             </div>

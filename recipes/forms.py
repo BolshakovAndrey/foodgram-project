@@ -8,6 +8,8 @@ class RecipeForm(forms.ModelForm):
     """
     Recipe Form
     """
+    image = forms.ImageField(required=False)
+
     class Meta:
         model = Recipe
         fields = (
