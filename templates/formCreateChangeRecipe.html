@@ -50,6 +50,9 @@
                     <div class="form__field-group-ingredientes-container">
                     </div>
                     <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>
+                    {% if form.errors %}
+                        <span class="form__error">{{ form.description.errors }}</span>
+                    {% endif %}
                 </div>
             </div>
             <div class="form__group">
@@ -68,9 +71,7 @@
                 <div class="form__field-group">
                     <textarea name="{{ form.description.name }}" id="id_description" rows="8" class="form__textarea"
                     >{% if is_edit %} {{ form.description.value }} {% endif %}</textarea>
-                    {% if form.errors %}
-                        <span class="form__error">{{ form.description.errors }}</span>
-                    {% endif %}
+
                 </div>
             </div>
             <div class="form__group">

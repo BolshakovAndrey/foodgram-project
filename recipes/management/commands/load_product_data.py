@@ -1,5 +1,4 @@
 import csv
-
 from django.core.management.base import BaseCommand, no_translations
 
 from recipes.models import Ingredient, Tag

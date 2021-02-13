@@ -2,7 +2,7 @@
 {% block title %}Список покупок{% endblock %}
 {% block content %}
     {% load static %}
-    {% include 'includes/nav.html' with shoplist=True %}
+    {% include 'includes/nav.html' with purchaselist=True %}
     {% csrf_token %}
     <link rel="stylesheet" href="{% static 'pages/shopList.css' %}">
     <div class="main__header">

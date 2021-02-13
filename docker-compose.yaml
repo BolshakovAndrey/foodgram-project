@@ -27,7 +27,7 @@ services:
       - foodgram/.env
 
   nginx:
-    image: nginx:latest
+    image: nginx:1.18
     container_name: webserver
     restart: always
     volumes:

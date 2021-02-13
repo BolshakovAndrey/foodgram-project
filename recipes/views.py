@@ -2,6 +2,7 @@ import csv
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import F, Sum
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -51,6 +52,7 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.author = self.request.user
         form_data = form.data
+
         ingredients = [
             key for key in form_data if key.startswith('nameIngredient_')
         ]
@@ -58,6 +60,15 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
             form.add_error(
                 'description',
                 'Необходимо указать хотя бы один ингредиент для рецепта'
+            )
+            return self.form_invalid(form)
+
+        ing_name = form_data['nameIngredient_1']
+        ingredients_list = Ingredient.objects.values('name')
+        if not ingredients_list.filter(name=ing_name).exists():
+            form.add_error(
+                'description',
+                'Необходимо выбирать ингредиент из выпадающего списка'
             )
             return self.form_invalid(form)
         instance.save()

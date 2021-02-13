@@ -11,6 +11,8 @@
 
 @import "../blocks/header/header.css";
 
+@import "../blocks/icon-left/icon-left.css";
+@import "../blocks/icon-right/icon-right.css";
 
 @import "../blocks/nav/nav.css";
 @import "../blocks/nav/__container/nav__container.css";
