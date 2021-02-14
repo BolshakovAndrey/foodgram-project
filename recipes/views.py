@@ -174,7 +174,6 @@ class AuthorRecipeListView(RecipeListView):
         return get_filters(self.request, queryset)
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
         author = get_object_or_404(User, pk=self.kwargs.get('pk'))
         context['author'] = author
 
@@ -219,7 +218,15 @@ class PurchaseList(ListView):
     view  Shopping list
     """
     model = Purchase
+    context_object_name = 'purchases_list'
     template_name = 'purchaselist.html'
+
+    def get_queryset(self):
+        queryset = super(PurchaseList, self).get_queryset()
+        author = self.request.user
+        qs = queryset.filter(user=author)
+        return get_filters(self.request, qs)
+
 
 
 def purchaselist_download(request):

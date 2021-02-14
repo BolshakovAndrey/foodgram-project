@@ -15,7 +15,7 @@
                     <li class="nav__item {% if purchaselist %} nav__item_active {% endif %}"><a
                             href="{% url 'purchaselist' %}" class="nav__link link">Список покупок</a><span
                             class="badge badge_style_blue nav__badge"
-                            id="counter">{{ user|shopping_count:user.id }}</span></li>
+                            id="counter">{{ user|shopping_count:user.id}}</span></li>
 
                 </ul>
                 <ul class="nav__items list">

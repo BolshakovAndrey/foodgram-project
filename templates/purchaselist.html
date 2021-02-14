@@ -10,12 +10,12 @@
     </div>
     <div class="card-list card-list_column">
         <ul class="shopping-list">
-            {% for obj in object_list %}
-                <li class="shopping-list__item" data-id="{{ obj.recipe.id }}">
+            {% for purchase in purchases_list %}
+                <li class="shopping-list__item" data-id="{{ purchase.recipe.id }}">
                     <div class="recipe recipe_reverse">
-                        <img src="{{ obj.recipe.image.url }}" alt="{{ obj.recipe.name }}" class="recipe__image recipe__image_small">
-                        <h3 class="recipe__title">{{ obj.recipe.name }}</h3>
-                        <p class="recipe__text"><span class="icon-time"></span>{{ obj.recipe.cook_time }} мин.</p>
+                        <img src="{{ purchase.recipe.image.url }}" alt="{{ purchase.recipe.name }}" class="recipe__image recipe__image_small">
+                        <h3 class="recipe__title">{{ purchase.recipe.name }}</h3>
+                        <p class="recipe__text"><span class="icon-time"></span>{{ purchase.recipe.cook_time }} мин.</p>
                     </div>
                     <a class="shopping-list__button link">Удалить</a>
                 </li>
