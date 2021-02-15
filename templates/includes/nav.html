@@ -12,10 +12,16 @@
                             href="{% url 'new_recipe' %}" class="nav__link link">Создать рецепт</a></li>
                     <li class="nav__item {% if favorites %} nav__item_active {% endif %}"><a
                             href="{% url 'favorites' %}" class="nav__link link">Избранное</a></li>
-                    <li class="nav__item {% if purchaselist %} nav__item_active {% endif %}"><a
-                            href="{% url 'purchaselist' %}" class="nav__link link">Список покупок</a><span
-                            class="badge badge_style_blue nav__badge"
-                            id="counter">{{ user|shopping_count:user.id}}</span></li>
+
+                    <li class="nav__item
+                    {% if user|shopping_count:user.id > 0 %}
+                    nav__item_active disabled
+                    {% endif %}
+                    {% if purchaselist %} nav__item_active {% endif %}"><a
+                                href="{% url 'purchaselist' %}" class="nav__link link">Список покупок</a><span
+                                class="badge badge_style_blue nav__badge"
+                                id="counter">{%  if user|shopping_count:user.id %} {{ user|shopping_count:user.id }} {% endif %}</span></li>
+
 
                 </ul>
                 <ul class="nav__items list">
