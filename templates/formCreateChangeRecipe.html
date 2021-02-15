@@ -48,6 +48,15 @@
                         <label for="cantidad" class="form__label" id="cantidadVal">шт.</label>
                     </div>
                     <div class="form__field-group-ingredientes-container">
+                        {%  for ingredient in recipe.amount_recipes.all %}
+                            <div class="form__field-item-ingredient" id="ing{{ forloop.counter }}">
+                                <span> {{ ingredient.ingredient.name }} {{ ingredient.units }} {{ ingredient.ingredient.unit }} </span>
+                                <span class="form__field-item-delete"></span>
+                                <input id="nameIngredient_{{ forloop.counter }}" name="nameIngredient_{{ forloop.counter }}" type="hidden" value="{{ingredient.ingredient.name}}">
+                                <input id="valueIngredient_{{ forloop.counter }}" name="valueIngredient_{{ forloop.counter }}" type="hidden" value="{{ingredient.units}}">
+                                <input id="unitsIngredient_{{ forloop.counter }}" name="unitsIngredient_{{ forloop.counter }}" type="hidden" value="{{ingredient.ingredient.unit}}">
+                            </div>
+                        {% endfor %}
                     </div>
                     <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>
                     {% if form.errors %}
@@ -77,9 +86,7 @@
             <div class="form__group">
                 <span class="form__label">Загрузить фото</span>
                 <div class="form__field-group">
-                    <label for="id_file" class="form__file-button">Выбрать файл</label>
-                    <input type="file" class="form__file" name="image"
-                           id="id_file" {% if is_edit %} value="{{ recipe.image }}"{% endif %}>
+                    <input class="form__footer" type="file" name="{{ form.image.name }}" id="{{ form.image.id_for_label }}" > {{ form.image.value|default_if_none:'' }}
                     {% if form.errors %}
                         <span class="form__error">{{ form.image.errors }}</span>
                     {% endif %}

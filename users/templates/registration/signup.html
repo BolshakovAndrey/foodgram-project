@@ -2,7 +2,7 @@
 {% load user_filters %}
 {% block content %}
 {% load static %}
-    {% include 'includes/nav.html' with signup=True %}
+        {% include 'includes/nav.html' with signup=True %}
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static '/pages/form.css' %}">
 {% endblock stylesheet %}
@@ -35,7 +35,9 @@
             {% endfor %}
 
             <div class="form__footer">
-                <button type="submit" class="button button_style_blue">Создать аккаунт</button>
+                <ul class="nav__items list">
+                    <button type="submit" class="button button_style_blue">Создать аккаунт</button>
+                </ul>
             </div>
         </form>
     </div>
