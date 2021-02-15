@@ -2,7 +2,6 @@ import csv
 import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import F, Sum
 from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -226,7 +225,6 @@ class PurchaseList(ListView):
         author = self.request.user
         qs = queryset.filter(user=author)
         return get_filters(self.request, qs)
-
 
 
 def purchaselist_download(request):
