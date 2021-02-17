@@ -50,7 +50,7 @@ PyYAML==3.11
 sentry-sdk==0.19.5
 sh==1.11
 sigtools==1.0
-six==1.10.0
+six==1.12.0
 sorl-thumbnail==12.7.0
 sqlparse==0.4.1
 stevedore==1.9.0
