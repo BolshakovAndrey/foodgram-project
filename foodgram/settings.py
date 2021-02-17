@@ -64,7 +64,6 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -138,8 +137,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = "/auth/login/"
 
-
-
 # GMAIL
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -150,7 +147,6 @@ EMAIL_USE_SSL = False
 EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 
 INTERNAL_IPS = [
     '*',

@@ -17,6 +17,7 @@ djangorestframework = "*"
 isort = "*"
 pylint = "*"
 environ = "*"
+wrapt = "==1.12.1"
 
 [requires]
 python_version = "3.8"
