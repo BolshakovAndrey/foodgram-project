@@ -2,8 +2,9 @@
     background: #000000;
     height: 90px;
     flex: 0 0 auto;
-    position: unset;
     left: 0;
     bottom: 0;
     width: 100%;
+    position: fixed;
+    left: 0;
 }

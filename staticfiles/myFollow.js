@@ -17,7 +17,7 @@ const configButton = {
         }
     }
 }
-setInterval(() => location.reload(), 3000)
+
 
 const subscribe = new Subscribe(configButton.subscribe, api);
 const myFollow = new MyFollow(container, '.card-user', header, api, true,{

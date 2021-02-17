@@ -4,9 +4,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'pages/index.css' %}">
 {% endblock %}
+    {% include 'includes/nav.html' %}
 
-
-{% block title %}{{ flatpage.title }}{% endblock %}
+{#{% block title %}{{ flatpage.title }}{% endblock %}#}
 
 
     <div class="custom-center-block">
@@ -17,7 +17,7 @@
                 Перейти на главную</a></button>
         </div>
     </div>
-
+    {% include 'includes/footer.html' %}
 {% endblock %}
 
 
