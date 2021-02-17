@@ -1,11 +1,15 @@
 import os
+from os.path import join, dirname
 from pathlib import Path
 
 import environ
+from dotenv import load_dotenv
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'foodgram.settings'
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 sentry_sdk.init(
     dsn="https://94710a104e1e4d6b9dc7b24abafc7307@o327774.ingest.sentry.io/5631623",
@@ -46,12 +50,12 @@ else:
         }
     }
 INSTALLED_APPS = [
-    'recipes',
     'users',
+    'recipes',
+    'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -59,6 +63,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'sorl.thumbnail',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +75,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+# # specify the directory where the email files will be stored
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 ROOT_URLCONF = 'foodgram.urls'
 
@@ -107,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -126,13 +135,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = "/auth/login/"
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# specify the directory where the email files will be stored
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+
+# GMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_SSL = False
+EMAIL_USE_TLS = True
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
 
 INTERNAL_IPS = [
     '*',

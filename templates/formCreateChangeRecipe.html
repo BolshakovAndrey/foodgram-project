@@ -2,7 +2,7 @@
 {% block title %}Создание рецепта{% endblock %}
 {% block content %}
     {% load static recipes_util %}
-    {% include 'includes/nav.html' with recipeform=True %}
+    {% include 'includes/nav.html' with new_recipe=True %}
     <link rel="stylesheet" href="{% static 'pages/form.css' %}">
     <div class="main__header">
         <h1 class="main__title">Создание рецепта</h1>

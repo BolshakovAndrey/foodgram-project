@@ -10,11 +10,11 @@ handler500 = 'recipes.views.server_error'  # noqa
 handler403 = 'recipes.views.permission_denied'  # noqa
 
 urlpatterns = [
-    # registration and authorization
-    path('auth/', include('users.urls')),
-    path('auth/', include('django.contrib.auth.urls')),
     # admin section
     path('admin/', admin.site.urls),
+    # registration and authorization
+    path("auth/", include("users.urls")),
+    path("auth/", include("django.contrib.auth.urls")),
     # apps
     path('', include('recipes.urls')),
 ]
