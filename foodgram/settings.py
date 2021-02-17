@@ -1,10 +1,9 @@
 import os
-from os.path import join, dirname
+from os.path import dirname, join
 from pathlib import Path
 
-import environ
-from dotenv import load_dotenv
 import sentry_sdk
+from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'foodgram.settings'
@@ -16,9 +15,6 @@ sentry_sdk.init(
     integrations=[DjangoIntegration()],
 )
 
-env = environ.Env()
-environ.Env.read_env()
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 if str(BASE_DIR) == '/code':
@@ -27,17 +23,17 @@ else:
     DEBUG = True
 
 if not DEBUG:
-    SECRET_KEY = env('SECRET_KEY')
+    SECRET_KEY = os.getenv('SECRET_KEY')
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '178.154.235.71']
 
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ.get('DB_NAME'),
-            'USER': os.environ.get('POSTGRES_USER'),
-            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-            'HOST': os.environ.get('DB_HOST'),
-            'PORT': os.environ.get('DB_PORT'),
+            'NAME': os.getenv('DB_NAME'),
+            'USER': os.getenv('POSTGRES_USER'),
+            'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT'),
         }
     }
 else:
