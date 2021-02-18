@@ -136,7 +136,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = "/auth/login/"
 
-# GMAIL.com
+# # GMAIL.com
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = os.getenv('EMAIL_HOST')
 # EMAIL_PORT = os.getenv('EMAIL_PORT')
@@ -154,7 +154,6 @@ EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-
 INTERNAL_IPS = [
     '*',
     '127.0.0.1',
@@ -167,7 +166,6 @@ REST_FRAMEWORK = {
 }
 
 SITE_ID = 1
-
 
 LOGGING = {
     'version': 1,
