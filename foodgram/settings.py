@@ -7,9 +7,11 @@ from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'foodgram.settings'
+
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
+# Sentry
 sentry_sdk.init(
     dsn="https://94710a104e1e4d6b9dc7b24abafc7307@o327774.ingest.sentry.io/5631623",
     integrations=[DjangoIntegration()],
