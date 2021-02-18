@@ -169,7 +169,7 @@ REST_FRAMEWORK = {
 
 SITE_ID = 1
 
-LOGGING_PATH = os.path.join(BASE_DIR, 'logs')
+# LOGGING_PATH = os.path.join(BASE_DIR, 'logs')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -177,7 +177,8 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(LOGGING_PATH, 'debug.log'),
+            # 'filename': os.path.join(LOGGING_PATH, 'debug.log'),
+            'filename': 'logs/debug.log',
         },
     },
     'loggers': {
