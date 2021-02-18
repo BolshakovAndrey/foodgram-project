@@ -76,7 +76,7 @@ MIDDLEWARE = [
 # # specify the directory where the email files will be stored
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-EMAIL_FILE_PATH = '/tmp/app-messages'
+EMAIL_FILE_PATH = '/app-messages'
 
 ROOT_URLCONF = 'foodgram.urls'
 
