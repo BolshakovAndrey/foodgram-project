@@ -27,7 +27,7 @@ else:
 if not DEBUG:
     SECRET_KEY = os.getenv('SECRET_KEY')
 
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230', '178.154.234.98']
 
     DATABASES = {
         'default': {
@@ -41,7 +41,7 @@ if not DEBUG:
     }
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230', '178.154.234.98']
 
     DATABASES = {
         'default': {
