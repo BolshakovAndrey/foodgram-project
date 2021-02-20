@@ -2,3 +2,6 @@
 exclude = node_modules, migrations, sql, columns,./recipes/tests.py, ./tests.py,
 # W503 line break before binary operator
 ignore = F821, W503, E501, F401, W391, W504
+
+[unittest]
+exclude = ./logs/debug.log

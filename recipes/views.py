@@ -20,6 +20,7 @@ class RecipeListView(ListView):
     """
     Main page with recipes
     """
+
     model = Recipe
     context_object_name = 'recipes'
     template_name = 'index.html'

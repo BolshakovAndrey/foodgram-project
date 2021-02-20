@@ -7,9 +7,11 @@ from dotenv import load_dotenv
 from sentry_sdk.integrations.django import DjangoIntegration
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'foodgram.settings'
+
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
+# Sentry sdk
 sentry_sdk.init(
     dsn="https://94710a104e1e4d6b9dc7b24abafc7307@o327774.ingest.sentry.io/5631623",
     integrations=[DjangoIntegration()],
@@ -26,7 +28,6 @@ if not DEBUG:
     SECRET_KEY = os.getenv('SECRET_KEY')
 
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230']
-    # ALLOWED_HOSTS = ['*']
 
     DATABASES = {
         'default': {
@@ -41,6 +42,7 @@ if not DEBUG:
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
     ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230']
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -76,6 +78,7 @@ MIDDLEWARE = [
 # # specify the directory where the email files will be stored
 # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 # EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+# # #  EMAIL_FILE_PATH = 'code/app-messages/'
 
 ROOT_URLCONF = 'foodgram.urls'
 
@@ -135,7 +138,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = "/auth/login/"
 
-# GMAIL.com
+# # GMAIL.com
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
@@ -157,3 +160,24 @@ REST_FRAMEWORK = {
 }
 
 SITE_ID = 1
+
+# LOGGING_PATH = os.path.join(BASE_DIR, 'logs')
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             # 'filename': os.path.join(LOGGING_PATH, 'debug.log'),
+#             'filename': 'logs/debug.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
