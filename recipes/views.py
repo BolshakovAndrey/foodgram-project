@@ -14,14 +14,12 @@ from recipes.models import Favorite, Follow, Ingredient, Purchase, Recipe, User
 
 from .forms import RecipeForm
 from .util import create_ingredients_amounts, get_all_tags, get_filters
-import logging
 
 
 class RecipeListView(ListView):
     """
     Main page with recipes
     """
-    logger = logging.getLogger(__name__)
 
     model = Recipe
     context_object_name = 'recipes'
