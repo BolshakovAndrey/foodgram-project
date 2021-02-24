@@ -27,7 +27,7 @@ else:
 if not DEBUG:
     SECRET_KEY = os.getenv('SECRET_KEY')
 
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230', '178.154.234.98']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
     DATABASES = {
         'default': {
@@ -41,7 +41,7 @@ if not DEBUG:
     }
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '84.201.169.230', '178.154.234.98']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
     DATABASES = {
         'default': {
@@ -161,23 +161,23 @@ REST_FRAMEWORK = {
 
 SITE_ID = 1
 
-# LOGGING_PATH = os.path.join(BASE_DIR, 'logs')
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             # 'filename': os.path.join(LOGGING_PATH, 'debug.log'),
-#             'filename': 'logs/debug.log',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
-# }
+LOGGING_PATH = os.path.join(BASE_DIR, 'logs')
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            # 'filename': os.path.join(LOGGING_PATH, 'debug.log'),
+            'filename': 'logs/debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
