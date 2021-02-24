@@ -81,7 +81,7 @@ jobs:
           port: 22
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "./foodgram/.env, nginx/default.conf, ./docker-compose.yaml"
-          target: "/home/yc-user/code"
+          target: "/home/admin/code"
 
 
       - name: executing remote ssh commands to deploy
