@@ -1,0 +1,1 @@
+[{"model": "recipes.tag", "pk": 1, "fields": {"name": "Завтрак", "slug": "breakfast", "checkbox_style": "orange"}}, {"model": "recipes.tag", "pk": 2, "fields": {"name": "Обед", "slug": "lunch", "checkbox_style": "green"}}, {"model": "recipes.tag", "pk": 3, "fields": {"name": "Ужин", "slug": "dinner", "checkbox_style": "purple"}}]

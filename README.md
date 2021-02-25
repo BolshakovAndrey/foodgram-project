@@ -46,8 +46,11 @@
 
    `python manage.py createsuperuser`
 
+6. Загрузить dumpdata (ингредиенты и тэги)
 
-5. Для получения актуальной версии образа проекта выполните:
+   `python manage.py loaddata myingredients.json`
+   `python manage.py loaddata tags.json`
+
+7. Для получения актуальной версии образа проекта выполните:
 
    `docker pull mydockerid2505/foodgram:final`
-  
