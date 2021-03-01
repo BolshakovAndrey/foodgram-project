@@ -1,6 +1,8 @@
 # foodgram-project
 
 ![Foodgram_workflow](https://github.com/BolshakovAndrey/foodgram-project/workflows/Foodgram_workflow/badge.svg)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2066521421574ba7816f8e1e70d751e9)](https://www.codacy.com/gh/BolshakovAndrey/foodgram-project/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BolshakovAndrey/foodgram-project&amp;utm_campaign=Badge_Grade)
+
 
 ***Foodgram*** - это сайт рецептов. Продуктовый помощник, позволяющий просматривать и создавать рецепты, добавлять их в
 избранное, подписываться на авторов рецептов, формировать список покупок с ингредиентами для приготовления понравившихся
